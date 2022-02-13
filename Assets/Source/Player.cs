@@ -16,13 +16,14 @@ public class Player : MonoBehaviour
 
     private Vector3 _moveVector;
 
-    public AudioClip soundWalk;
-    AudioSource audioSource;
+    AudioSource audioSourceSeWalk;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioSourceSeWalk = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
     }
 
     /// <summary> 起動時 </summary>
@@ -39,17 +40,35 @@ public class Player : MonoBehaviour
         UpdateMove(_moveVector);
     }
 
+    private void FixedUpdate()
+    {
+        if (nowAnime != oldAnime)
+        {
+            oldAnime = nowAnime;
+            animator.Play(nowAnime);
+        }
+    }
+
     ////////////////////////////////////////////////////////////
     /// 移動操作
     ////////////////////////////////////////////////////////////
     #region Move
+
+    public static string standAnime = "PlayerStand";
+    public static string walkAnime = "PlayerWalk";
+
+    string nowAnime = standAnime;
+    string oldAnime = standAnime;
 
     /// <summary> ドラッグ操作開始（移動用） </summary>
     private void OnBeginDragMove(PointerEventData eventData)
     {
         // タッチ開始位置を保持
         _movePointerPosBegin = eventData.position;
-        audioSource.Play();
+
+        // 歩き始めた
+        audioSourceSeWalk.Play();
+        nowAnime = walkAnime;
     }
 
     /// <summary> ドラッグ操作中（移動用） </summary>
@@ -59,7 +78,6 @@ public class Player : MonoBehaviour
         var vector = eventData.position - _movePointerPosBegin;
         // _moveVector = new Vector3(vector.x, 0f, vector.y);
         _moveVector = new Vector3(vector.x, 0f, 0f); // 左右だけに移動できる
-
 
         if (vector.x > 0)
         {
@@ -94,7 +112,10 @@ public class Player : MonoBehaviour
     {
         // 移動ベクトルを解消
         _moveVector = Vector3.zero;
-        audioSource.Stop();
+
+        // 歩き終わった
+        audioSourceSeWalk.Stop();
+        nowAnime = standAnime;
     }
     #endregion
 
