@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     {
         // タッチ開始位置を保持
         _movePointerPosBegin = eventData.position;
-        audioSource.PlayOneShot(soundWalk, 1.0f);
+        audioSource.Play();
     }
 
     /// <summary> ドラッグ操作中（移動用） </summary>

@@ -124,6 +124,7 @@ Library: lib_burst_generated
 --output=/Users/shule/unity/pixel-0211/Temp/StagingArea/tempburstlibs/armeabi-v7a/lib_burst_generated
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/UnityEngine.UI.dll
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.Mathematics.dll
+--root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.Timeline.dll
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.TextMeshPro.dll
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.Burst.dll
@@ -133,7 +134,6 @@ Library: lib_burst_generated
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.2D.Common.Runtime.dll
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.2D.PixelPerfect.dll
 --root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Unity.InternalAPIEngineBridge.001.dll
---root-assembly=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/Assembly-CSharp.dll
 --assembly-folder=/Users/shule/unity/pixel-0211/Temp/StagingArea/Data/Managed/
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
