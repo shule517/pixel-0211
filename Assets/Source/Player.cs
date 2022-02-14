@@ -50,11 +50,6 @@ public class Player : MonoBehaviour
             RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
 
             if (hit2d) {
-                clickedGameObject = hit2d.transform.gameObject;
-
-                var moveDistance = hit2d.transform.position.x - transform.position.x;
-                var second = Math.Abs(moveDistance / _movePerSecond);
-                
                 // 歩き始めた
                 audioSourceSeWalk.Play();
                 nowAnime = walkAnime;
@@ -62,36 +57,24 @@ public class Player : MonoBehaviour
                 // 移動を中断
                 transform.DOKill();
 
-                if (moveDistance > 0)
-                {
-                    // 右に移動
-                    Vector3 localScale = transform.localScale;
-                    if (localScale.x < 0)
-                    {
-                        localScale.x = localScale.x * -1;
-                        transform.localScale = localScale;
-                    }
-                }
-                else if (moveDistance < 0)
-                {
-                    // 左に移動
-                    Vector3 localScale = transform.localScale;
-                    if (localScale.x > 0)
-                    {
-                        localScale.x = localScale.x * -1;
-                        transform.localScale = localScale;
-                    }
-                }
+                // 移動処理
+                clickedGameObject = hit2d.transform.gameObject;
+                var vector = hit2d.transform.position - transform.position;
+                var moveDistance = vector.x;
+                var second = Math.Abs(moveDistance / _movePerSecond);
+
+                // キャラの向きを変える
+                fitPlayerDirection(vector);
 
                 // 移動
-                transform.DOLocalMove(new Vector3(hit2d.transform.position.x, transform.position.y, 0), second).SetEase(Ease.Linear).OnComplete(() => {
-                    // 歩き終わった
-                    audioSourceSeWalk.Stop();
-                    nowAnime = standAnime;
-                });
+                transform.DOLocalMove(new Vector3(hit2d.transform.position.x, transform.position.y, 0), second)
+                    .SetEase(Ease.Linear)
+                    .OnComplete(() => {
+                        // 歩き終わった
+                        audioSourceSeWalk.Stop();
+                        nowAnime = standAnime;
+                    });
             } 
-
-            Debug.Log(clickedGameObject);
         }
     }
 
@@ -134,29 +117,38 @@ public class Player : MonoBehaviour
     {
         // タッチ開始位置からのスワイプ量を移動ベクトルにする
         var vector = eventData.position - _movePointerPosBegin;
-        // _moveVector = new Vector3(vector.x, 0f, vector.y);
         _moveVector = new Vector3(vector.x, 0f, 0f); // 左右だけに移動できる
 
+        // キャラの向きを変える
+        fitPlayerDirection(vector);
+    }
+
+    private void fitPlayerDirection(Vector2 vector)
+    {
         if (vector.x > 0)
         {
-            // 右に移動
-            Vector3 localScale = transform.localScale;
-            if (localScale.x < 0)
+            // 右に移動して左向いているときは反転
+            if (transform.localScale.x < 0)
             {
-                localScale.x = localScale.x * -1;
-                transform.localScale = localScale;
+                reversePlayerDirection();
             }
         }
         else if (vector.x < 0)
         {
-            // 左に移動
-            Vector3 localScale = transform.localScale;
-            if (localScale.x > 0)
+            // 左に移動して右向いているときは反転
+            if (transform.localScale.x > 0)
             {
-                localScale.x = localScale.x * -1;
-                transform.localScale = localScale;
+                reversePlayerDirection();
             }
         }
+    }
+
+    private void reversePlayerDirection()
+    {
+        // キャラの向きを反転
+        Vector3 localScale = transform.localScale;
+        localScale.x = localScale.x * -1;
+        transform.localScale = localScale;
     }
 
     private void UpdateMove(Vector3 vector)
