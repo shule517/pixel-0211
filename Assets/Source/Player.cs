@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     AudioSource audioSourceSeWalk;
     Animator animator;
-    // Tween tween;
+    Tween tween = null;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +44,13 @@ public class Player : MonoBehaviour
 
         // クリックしたオブジェクトまで移動
         if (Input.GetMouseButtonDown(0)) {
+            if (tween != null && tween.IsPlaying())
+            {
+                // 移動中はスキップ
+                return;
+            }
+
+
             GameObject clickedGameObject = null;
 
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -67,7 +74,7 @@ public class Player : MonoBehaviour
                 fitPlayerDirection(vector);
 
                 // 移動
-                transform.DOLocalMove(new Vector3(hit2d.transform.position.x, transform.position.y, 0), second)
+                tween = transform.DOLocalMove(new Vector3(hit2d.transform.position.x, transform.position.y, 0), second)
                     .SetEase(Ease.Linear)
                     .OnComplete(() => {
                         // 歩き終わった
