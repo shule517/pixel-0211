@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
 
     AudioSource audioSourceSeWalk;
     Animator animator;
+    // Tween tween;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +52,43 @@ public class Player : MonoBehaviour
             if (hit2d) {
                 clickedGameObject = hit2d.transform.gameObject;
 
-                transform.position = new Vector2(hit2d.transform.position.x, transform.position.y);
+                var moveDistance = hit2d.transform.position.x - transform.position.x;
+                var second = Math.Abs(moveDistance / _movePerSecond);
+                
+                // 歩き始めた
+                audioSourceSeWalk.Play();
+                nowAnime = walkAnime;
+
+                // 移動を中断
+                transform.DOKill();
+
+                if (moveDistance > 0)
+                {
+                    // 右に移動
+                    Vector3 localScale = transform.localScale;
+                    if (localScale.x < 0)
+                    {
+                        localScale.x = localScale.x * -1;
+                        transform.localScale = localScale;
+                    }
+                }
+                else if (moveDistance < 0)
+                {
+                    // 左に移動
+                    Vector3 localScale = transform.localScale;
+                    if (localScale.x > 0)
+                    {
+                        localScale.x = localScale.x * -1;
+                        transform.localScale = localScale;
+                    }
+                }
+
+                // 移動
+                transform.DOLocalMove(new Vector3(hit2d.transform.position.x, transform.position.y, 0), second).SetEase(Ease.Linear).OnComplete(() => {
+                    // 歩き終わった
+                    audioSourceSeWalk.Stop();
+                    nowAnime = standAnime;
+                });
             } 
 
             Debug.Log(clickedGameObject);
@@ -85,6 +124,9 @@ public class Player : MonoBehaviour
         // 歩き始めた
         audioSourceSeWalk.Play();
         nowAnime = walkAnime;
+
+        // 移動を中断
+        transform.DOKill();
     }
 
     /// <summary> ドラッグ操作中（移動用） </summary>
