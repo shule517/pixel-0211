@@ -38,6 +38,22 @@ public class Player : MonoBehaviour
     private void Update()
     {
         UpdateMove(_moveVector);
+
+        // クリックしたオブジェクトまで移動
+        if (Input.GetMouseButtonDown(0)) {
+            GameObject clickedGameObject = null;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
+
+            if (hit2d) {
+                clickedGameObject = hit2d.transform.gameObject;
+
+                transform.position = new Vector2(hit2d.transform.position.x, transform.position.y);
+            } 
+
+            Debug.Log(clickedGameObject);
+        }
     }
 
     private void FixedUpdate()
