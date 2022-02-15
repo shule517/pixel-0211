@@ -922,7 +922,7 @@ GameObject:
   - component: {fileID: 1337495713}
   - component: {fileID: 1337495712}
   m_Layer: 0
-  m_Name: guardrail_0
+  m_Name: guardrail1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1352,7 +1352,7 @@ GameObject:
   - component: {fileID: 1975547313}
   - component: {fileID: 1975547312}
   m_Layer: 0
-  m_Name: guardrail_0 (1)
+  m_Name: guardrail2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
