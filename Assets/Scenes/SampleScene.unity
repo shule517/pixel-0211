@@ -366,7 +366,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -728,7 +728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c496ec73416e840639e33133d3a9422b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ball: {fileID: 7623800262716262773, guid: 9c9d88326af0d4b00ba82cc12ef191c0, type: 3}
+  artwork: {fileID: 7623800262716262773, guid: 9c9d88326af0d4b00ba82cc12ef191c0, type: 3}
 --- !u!4 &581259451
 Transform:
   m_ObjectHideFlags: 0
