@@ -3,38 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-[System.Serializable]
-public class Item4
+namespace API
 {
-    // public int id;
-    // public string name;
-    // public string description = "デフォルト値";
-    // public int[] children;
+    [System.Serializable]
+    public class ArtistResponse
+    {
+        public Artist artist;
+        public Artworks[] artworks;
+        public Artworks[] like_artwokrs;
+    }
 
-    public Artist artist;
-    public Artworks[] artworks;
-    public Artworks[] like_artwokrs;
-}
+    [System.Serializable]
+    public class Artist
+    {
+        public int id;
+        public string name;
+    }
 
-[System.Serializable]
-public class Artist
-{
-    public int id;
-    public string name;
-}
+    [System.Serializable]
+    public class Artworks
+    {
+        public Artist artist;
+        public Artwork artwork;
+    }
 
-[System.Serializable]
-public class Artworks
-{
-    public Artist artist;
-    public Artwork2 artwork;
-}
-
-[System.Serializable]
-public class Artwork2
-{
-    public int id;
-    public string media_url;
+    [System.Serializable]
+    public class Artwork
+    {
+        public int id;
+        public string media_url;
+    }
 }
 
 public class GameManager : MonoBehaviour
@@ -49,17 +47,9 @@ public class GameManager : MonoBehaviour
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/clrfnd/artworks";
         var apiwww = new WWW (url);
         yield return apiwww;
-        Debug.Log("apiwww.text " + apiwww.text);
 
         var itemJson = apiwww.text;
-        Item4 item4 = JsonUtility.FromJson<Item4>(itemJson);
-
-        Debug.Log("itemJson: " + itemJson);
-        Debug.Log("item4: " + item4);
-
-
-
-
+        API.ArtistResponse item4 = JsonUtility.FromJson<API.ArtistResponse>(itemJson);
 
         var artworkUrls = new string[] {
             "http://pbs.twimg.com/media/FHFaZREaAAIsq8o.png",
@@ -87,15 +77,9 @@ public class GameManager : MonoBehaviour
             "http://pbs.twimg.com/media/EzvcBLLVgAUe2_1.png",
             "http://pbs.twimg.com/media/FC8vz-baAAAY-DM.jpg",
             "http://pbs.twimg.com/media/E884elSVcBwQNlR.jpg",
-            
-             };
-
-
-        // for (int i = 0; i < 20; i++)
+        };
 
         var i = -1;
-        // foreach (var artworkUrl in artworkUrls)
-
         var artworks = item4.artworks.Concat(item4.like_artwokrs).ToArray();
 
         foreach (var artWorkInfo in artworks)
@@ -103,9 +87,6 @@ public class GameManager : MonoBehaviour
             var clone = Instantiate(artwork, new Vector3(i * 8, 1.71f, 0), Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
-            Debug.Log("mediaUrl: " + obj.mediaUrl);
-            // var clone = Instantiate(artwork, new Vector3(26 + i * 8, 1.71f, 0), Quaternion.identity);
-            // clone.LoadImage("http://pbs.twimg.com/media/FHFaZREaAAIsq8o.png");
             i++;
         }
     }
