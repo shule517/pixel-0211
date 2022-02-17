@@ -7,6 +7,8 @@ public class Artwork : MonoBehaviour
 {
     public string mediaUrl;
 
+    public int height;
+
     [SerializeField] private RawImage _image;
 
     // Start is called before the first frame update
@@ -36,9 +38,10 @@ public class Artwork : MonoBehaviour
 
             // 新しいスプライトのメッシュタイプをFullRectにして、9スライスに対応できるようにする
             // 9スライスとはいってもborderはデフォルトの(0, 0, 0, 0)なので、画像全体がサイズに合わせて伸縮することになる
-            Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), 700.0f, 0, SpriteMeshType.FullRect);
+            Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.height / 800.0f * 700.0f, 0, SpriteMeshType.FullRect);
 
 
+            height = texture.height;
 
 
             // Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
