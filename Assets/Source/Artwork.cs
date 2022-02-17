@@ -38,7 +38,7 @@ public class Artwork : MonoBehaviour
 
             // 新しいスプライトのメッシュタイプをFullRectにして、9スライスに対応できるようにする
             // 9スライスとはいってもborderはデフォルトの(0, 0, 0, 0)なので、画像全体がサイズに合わせて伸縮することになる
-            Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.height / 800.0f * 700.0f, 0, SpriteMeshType.FullRect);
+            Sprite sprite = Sprite.Create(texture, new Rect(0.0f, 0.0f, texture.width, texture.height), new Vector2(0.5f, 0.5f), texture.height / 900.0f * 700.0f, 0, SpriteMeshType.FullRect);
 
 
             height = texture.height;
