@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        // string url = "http://pixel-museum.herokuapp.com/api/v1/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/pixel_hal/artworks";
         string url = "http://pixel-museum.herokuapp.com/api/v1/artists/yuki77mi/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/clrfnd/artworks";
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         API.ArtistResponse item4 = JsonUtility.FromJson<API.ArtistResponse>(itemJson);
 
         var artworkUrls = new string[] {
+            "https://pbs.twimg.com/media/EQ78HO8VAAAC8dk.png",
             "http://pbs.twimg.com/media/FHFaZREaAAIsq8o.png",
             "http://pbs.twimg.com/media/FLKsamJaQAQgHSA.jpg",
             "http://pbs.twimg.com/media/FLgBV1kakAAvdtQ.png",
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
 
         foreach (var artWorkInfo in artworks)
         {
-            var clone = Instantiate(artwork, new Vector3(i * 8, 1.71f, 0), Quaternion.identity);
+            var clone = Instantiate(artwork, new Vector3(i * 8 + 18, 1.71f, 0), Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             i++;
