@@ -80,6 +80,10 @@ public class Player : MonoBehaviour
                         // 歩き終わった
                         audioSourceSeWalk.Stop();
                         nowAnime = standAnime;
+
+                        var artwork = clickedGameObject.GetComponent<Artwork>();
+                        var artist_id = artwork.artworkInfo.artist.screen_name;
+                        SceneParameter.LoadScene(artist_id);
                     });
             } 
         }

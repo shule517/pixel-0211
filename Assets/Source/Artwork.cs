@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Artwork : MonoBehaviour
 {
     public string mediaUrl;
+    public API.Artworks artworkInfo;
 
     public int height;
 

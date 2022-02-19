@@ -18,6 +18,7 @@ namespace API
     {
         public int id;
         public string name;
+        public string screen_name;
     }
 
     [System.Serializable]
@@ -44,8 +45,11 @@ public class GameManager : MonoBehaviour
     {
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/pixel_hal/artworks";
-        string url = "http://pixel-museum.herokuapp.com/api/v1/artists/yuki77mi/artworks";
+        // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/yuki77mi/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/clrfnd/artworks";
+
+        string url = $"http://pixel-museum.herokuapp.com/api/v1/artists/{SceneParameter.CrossSceneInformation}/artworks";
+
         var apiwww = new WWW (url);
         yield return apiwww;
 
@@ -81,15 +85,27 @@ public class GameManager : MonoBehaviour
             "http://pbs.twimg.com/media/E884elSVcBwQNlR.jpg",
         };
 
-        var i = -1;
-        var artworks = item4.artworks.Concat(item4.like_artwokrs).ToArray();
+        // var artworks = item4.like_artwokrs;
+        // var artworks = item4.artworks.Concat(item4.like_artwokrs).ToArray();
 
-        foreach (var artWorkInfo in artworks)
+        var i = -1;
+        foreach (var artWorkInfo in item4.artworks)
         {
             var clone = Instantiate(artwork, new Vector3(i * 8 + 18, 1.71f, 0), Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
+            obj.artworkInfo = artWorkInfo;
             i++;
+        }
+
+        var j = -1;
+        foreach (var artWorkInfo in item4.like_artwokrs)
+        {
+            var clone = Instantiate(artwork, new Vector3(j * -8 - 18, 1.71f, 0), Quaternion.identity);
+            var obj = clone.GetComponent<Artwork>();
+            obj.mediaUrl = artWorkInfo.artwork.media_url;
+            obj.artworkInfo = artWorkInfo;
+            j++;
         }
     }
 
