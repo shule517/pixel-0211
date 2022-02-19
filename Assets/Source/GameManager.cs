@@ -88,10 +88,20 @@ public class GameManager : MonoBehaviour
         // var artworks = item4.like_artwokrs;
         // var artworks = item4.artworks.Concat(item4.like_artwokrs).ToArray();
 
+        {
+            var clone = Instantiate(artwork, new Vector3(2, 1.71f, 0), Quaternion.identity);
+            var obj = clone.GetComponent<Artwork>();
+            obj.mediaUrl = "https://pbs.twimg.com/media/FLgBV1kakAAvdtQ?format=png&name=large";
+            obj.artworkInfo = new API.Artworks();
+            obj.artworkInfo.artist = new API.Artist();
+            obj.artworkInfo.artist.screen_name = "yuki77mi";
+            obj.artworkInfo.artwork = new API.Artwork();
+        }
+
         var i = -1;
         foreach (var artWorkInfo in item4.artworks)
         {
-            var clone = Instantiate(artwork, new Vector3(i * 8 + 18, 1.71f, 0), Quaternion.identity);
+            var clone = Instantiate(artwork, new Vector3(i * 8 + 16, 1.71f, 0), Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             obj.artworkInfo = artWorkInfo;
@@ -101,7 +111,7 @@ public class GameManager : MonoBehaviour
         var j = -1;
         foreach (var artWorkInfo in item4.like_artwokrs)
         {
-            var clone = Instantiate(artwork, new Vector3(j * -8 - 18, 1.71f, 0), Quaternion.identity);
+            var clone = Instantiate(artwork, new Vector3(j * -8 - 28, 1.71f, 0), Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             obj.artworkInfo = artWorkInfo;
