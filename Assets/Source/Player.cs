@@ -70,6 +70,11 @@ public class Player : MonoBehaviour
                 var moveDistance = vector.x;
                 var second = Math.Abs(moveDistance / _movePerSecond);
 
+                var artwork = clickedGameObject.GetComponent<Artwork>();
+                var artist_id = artwork.artworkInfo.artist.screen_name;
+
+                Debug.Log($"artist: {artist_id}");
+
                 // キャラの向きを変える
                 fitPlayerDirection(vector);
 
@@ -81,8 +86,6 @@ public class Player : MonoBehaviour
                         audioSourceSeWalk.Stop();
                         nowAnime = standAnime;
 
-                        var artwork = clickedGameObject.GetComponent<Artwork>();
-                        var artist_id = artwork.artworkInfo.artist.screen_name;
                         SceneParameter.LoadScene(artist_id);
                     });
             } 

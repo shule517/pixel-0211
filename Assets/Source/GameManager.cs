@@ -39,6 +39,7 @@ namespace API
 public class GameManager : MonoBehaviour
 {
     public GameObject artwork;
+    public GameObject proCamera2DTriggerBoundaries;
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -96,6 +97,8 @@ public class GameManager : MonoBehaviour
             obj.artworkInfo.artist = new API.Artist();
             obj.artworkInfo.artist.screen_name = "yuki77mi";
             obj.artworkInfo.artwork = new API.Artwork();
+
+            Instantiate(proCamera2DTriggerBoundaries, new Vector3(2, 1.71f, 0), Quaternion.identity);
         }
 
         var i = -1;
@@ -105,6 +108,9 @@ public class GameManager : MonoBehaviour
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             obj.artworkInfo = artWorkInfo;
+
+            Instantiate(proCamera2DTriggerBoundaries, new Vector3(i * 8 + 16, 1.71f, 0), Quaternion.identity);
+
             i++;
         }
 
@@ -115,6 +121,9 @@ public class GameManager : MonoBehaviour
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             obj.artworkInfo = artWorkInfo;
+
+            Instantiate(proCamera2DTriggerBoundaries, new Vector3(j * -8 - 28, 1.71f, 0), Quaternion.identity);
+
             j++;
         }
     }
