@@ -104,12 +104,13 @@ public class GameManager : MonoBehaviour
         var i = -1;
         foreach (var artWorkInfo in item4.artworks)
         {
-            var clone = Instantiate(artwork, new Vector3(i * 8 + 16, 1.71f, 0), Quaternion.identity);
+            var positon = new Vector3(i * 8 + 16, 1.71f, 0);
+            var clone = Instantiate(artwork, positon, Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             obj.artworkInfo = artWorkInfo;
 
-            Instantiate(proCamera2DTriggerBoundaries, new Vector3(i * 8 + 16, 1.71f, 0), Quaternion.identity);
+            Instantiate(proCamera2DTriggerBoundaries, positon, Quaternion.identity);
 
             i++;
         }
@@ -117,12 +118,13 @@ public class GameManager : MonoBehaviour
         var j = -1;
         foreach (var artWorkInfo in item4.like_artwokrs)
         {
-            var clone = Instantiate(artwork, new Vector3(j * -8 - 28, 1.71f, 0), Quaternion.identity);
+            var positon = new Vector3(j * -8 - 28, 1.71f, 0);
+            var clone = Instantiate(artwork, positon, Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
             obj.artworkInfo = artWorkInfo;
 
-            Instantiate(proCamera2DTriggerBoundaries, new Vector3(j * -8 - 28, 1.71f, 0), Quaternion.identity);
+            Instantiate(proCamera2DTriggerBoundaries, positon, Quaternion.identity);
 
             j++;
         }
