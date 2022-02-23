@@ -87,18 +87,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    // 左クリックしたオブジェクトを取得する関数(3D)
-    public GameObject getClickObject() {
-        GameObject result = null;
+    // 左クリックしたオブジェクトを取得する関数(2D)
+    // https://rikoubou.hatenablog.com/entry/2016/01/29/163518
+    private GameObject getClickObject() {
         // 左クリックされた場所のオブジェクトを取得
         if(Input.GetMouseButtonDown(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit)){
-                result = hit.collider.gameObject;
+            Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Collider2D collition2d = Physics2D.OverlapPoint(tapPoint);
+            if (collition2d) {
+                return collition2d.transform.gameObject;
             }
         }
-        return result;
+
+        return null;
     }
 
     private void FixedUpdate()
