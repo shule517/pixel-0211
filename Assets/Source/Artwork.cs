@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Artwork : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class Artwork : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        var seq = DOTween.Sequence();
+        seq.Append(transform.DOLocalMoveY(0.5f, 2.5f).SetEase(Ease.InOutSine).SetRelative());//上へ
+        seq.Append(transform.DOLocalMoveY(-0.5f, 2.5f).SetEase(Ease.InOutSine).SetRelative());//.SetDelay(2.0f));//2秒止まって下へ
+        seq.SetLoops(-1);//繰り返し
+
         Debug.Log("mediaUrl: " + mediaUrl);
         UnityWebRequest www = UnityWebRequestTexture.GetTexture(mediaUrl);
 
