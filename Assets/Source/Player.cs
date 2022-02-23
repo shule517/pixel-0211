@@ -50,13 +50,9 @@ public class Player : MonoBehaviour
                 return;
             }
 
+            GameObject clickedGameObject = getClickObject();
 
-            GameObject clickedGameObject = null;
-
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit2d = Physics2D.Raycast((Vector2)ray.origin, (Vector2)ray.direction);
-
-            if (hit2d) {
+            if (clickedGameObject != null) {
                 // 歩き始めた
                 audioSourceSeWalk.Play();
                 nowAnime = walkAnime;
@@ -65,8 +61,7 @@ public class Player : MonoBehaviour
                 transform.DOKill();
 
                 // 移動処理
-                clickedGameObject = hit2d.transform.gameObject;
-                var vector = hit2d.transform.position - transform.position;
+                var vector = clickedGameObject.transform.position - transform.position;
                 var moveDistance = vector.x;
                 var second = Math.Abs(moveDistance / _movePerSecond);
 
@@ -79,7 +74,7 @@ public class Player : MonoBehaviour
                 fitPlayerDirection(vector);
 
                 // 移動
-                tween = transform.DOLocalMove(new Vector3(hit2d.transform.position.x, transform.position.y, 0), second)
+                tween = transform.DOLocalMove(new Vector3(clickedGameObject.transform.position.x, transform.position.y, 0), second)
                     .SetEase(Ease.Linear)
                     .OnComplete(() => {
                         // 歩き終わった
@@ -90,6 +85,20 @@ public class Player : MonoBehaviour
                     });
             } 
         }
+    }
+
+    // 左クリックしたオブジェクトを取得する関数(3D)
+    public GameObject getClickObject() {
+        GameObject result = null;
+        // 左クリックされた場所のオブジェクトを取得
+        if(Input.GetMouseButtonDown(0)) {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
+            if (Physics.Raycast(ray, out hit)){
+                result = hit.collider.gameObject;
+            }
+        }
+        return result;
     }
 
     private void FixedUpdate()

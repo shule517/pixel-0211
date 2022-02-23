@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4718683452950940160}
   - component: {fileID: 7623800262716262772}
   - component: {fileID: 6945655824602958224}
-  - component: {fileID: 7623800262716262774}
   - component: {fileID: 3302186235064284895}
+  - component: {fileID: -5992586194118868186}
   m_Layer: 0
   m_Name: Artwork
   m_TagString: Untagged
@@ -105,33 +105,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mediaUrl: http://pbs.twimg.com/media/FHFaZREaAAIsq8o.png
+  artworkInfo:
+    artist:
+      id: 0
+      name: 
+      screen_name: 
+    artwork:
+      id: 0
+      media_url: 
+  height: 0
   _image: {fileID: 0}
---- !u!61 &7623800262716262774
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7623800262716262773}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
-  m_EdgeRadius: 0
 --- !u!222 &3302186235064284895
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -140,3 +123,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7623800262716262773}
   m_CullTransparentMesh: 1
+--- !u!65 &-5992586194118868186
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623800262716262773}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 1.28, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
