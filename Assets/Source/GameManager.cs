@@ -44,12 +44,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        // string url = "http://pixel-museum.herokuapp.com/api/v1/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/pixel_hal/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/yuki77mi/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/clrfnd/artworks";
 
-        string url = $"http://pixel-museum.herokuapp.com/api/v1/artists/{SceneParameter.CrossSceneInformation}/artworks";
+        string url = "";
+        if (SceneParameter.CrossSceneInformation == "") {
+            url = "http://pixel-museum.herokuapp.com/api/v1/artworks";
+        } else {
+            url = $"http://pixel-museum.herokuapp.com/api/v1/artists/{SceneParameter.CrossSceneInformation}/artworks";
+        }
 
         var apiwww = new WWW (url);
         yield return apiwww;
@@ -101,10 +105,11 @@ public class GameManager : MonoBehaviour
             Instantiate(proCamera2DTriggerBoundaries, new Vector3(2, 1.71f, 0), Quaternion.identity);
         }
 
+        var Interval = 10.0f;
         var i = -1;
         foreach (var artWorkInfo in item4.artworks)
         {
-            var positon = new Vector3(i * 8 + 16, 1.71f, 0);
+            var positon = new Vector3(i * Interval + 16, 1.71f, 0);
             var clone = Instantiate(artwork, positon, Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
@@ -118,7 +123,7 @@ public class GameManager : MonoBehaviour
         var j = -1;
         foreach (var artWorkInfo in item4.like_artwokrs)
         {
-            var positon = new Vector3(j * -8 - 28, 1.71f, 0);
+            var positon = new Vector3(j * Interval * -1 - 28, 1.71f, 0);
             var clone = Instantiate(artwork, positon, Quaternion.identity);
             var obj = clone.GetComponent<Artwork>();
             obj.mediaUrl = artWorkInfo.artwork.media_url;
