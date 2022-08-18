@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
 
     private Vector3 _moveVector;
 
+    public AudioClip soundWalk;
+    public AudioClip soundTalk;
     AudioSource audioSourceSeWalk;
+    AudioSource audioSourceTalk;
     Animator animator;
     Tween tween = null;
 
@@ -42,6 +45,14 @@ public class Player : MonoBehaviour
     {
         UpdateMove(_moveVector);
 
+        // スペースキーの取得
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            //音を鳴らす
+            // audioSourceTalk.PlayOneShot();
+            // audioSourceTalk.Play();
+            audioSourceSeWalk.PlayOneShot(soundTalk);
+        }
+
         // クリックしたオブジェクトまで移動
         if (Input.GetMouseButtonDown(0)) {
             if (tween != null && tween.IsPlaying())
@@ -54,7 +65,7 @@ public class Player : MonoBehaviour
 
             if (clickedGameObject != null) {
                 // 歩き始めた
-                audioSourceSeWalk.Play();
+                audioSourceSeWalk.PlayOneShot(soundWalk);
                 nowAnime = walkAnime;
 
                 // 移動を中断
