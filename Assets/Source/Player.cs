@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public AudioClip soundWalk;
     public AudioClip soundTalk;
     AudioSource audioSourceSeWalk;
-    AudioSource audioSourceTalk;
+    // AudioSource audioSourceTalk;
     Animator animator;
     Tween tween = null;
 
