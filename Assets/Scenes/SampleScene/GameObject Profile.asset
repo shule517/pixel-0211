@@ -18,10 +18,10 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.514
+    m_Value: 1
   response:
     m_OverrideState: 1
-    m_Value: 0.8
+    m_Value: 0.67
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
@@ -37,19 +37,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.03800285, g: 0.049638797, b: 0.13207549, a: 1}
+    m_Value: {r: 0.04570069, g: 0.036445357, b: 0.1981132, a: 1}
   center:
     m_OverrideState: 0
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.381
+    m_Value: 0.39
   smoothness:
     m_OverrideState: 1
-    m_Value: 0.226
+    m_Value: 0.14
   rounded:
     m_OverrideState: 1
     m_Value: 1
@@ -88,7 +88,7 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 1.18
+    m_Value: 0.47
   scatter:
     m_OverrideState: 0
     m_Value: 0.685
@@ -97,7 +97,7 @@ MonoBehaviour:
     m_Value: 65475.24
   tint:
     m_OverrideState: 1
-    m_Value: {r: 0.53479725, g: 0.5235849, b: 1, a: 1}
+    m_Value: {r: 0.065815255, g: 0.122536644, b: 0.4811321, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 1
@@ -125,4 +125,4 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.301
+    m_Value: 0.54
