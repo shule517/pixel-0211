@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scenarioé–í{ : MonoBehaviour
+public class Scenarioì•êÿ : MonoBehaviour
 {
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -11,9 +13,9 @@ public class Scenarioé–í{ : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (-95 < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("ì•êÿScene");
+            SceneManager.LoadScene("âwÉzÅ[ÉÄScene");
         }
     }
 }
