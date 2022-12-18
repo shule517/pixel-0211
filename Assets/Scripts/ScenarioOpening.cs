@@ -1,7 +1,5 @@
 using DG.Tweening;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Experimental.GlobalIllumination;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
