@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
     public GameObject proCamera2DTriggerBoundaries;
 
     // Start is called before the first frame update
-    IEnumerator StartXXXXXX() // TODO:処理を止めた
+    IEnumerator Start() // TODO:処理を止めた
     {
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/pixel_hal/artworks";
         // string url = "http://pixel-museum.herokuapp.com/api/v1/artists/yuki77mi/artworks";
