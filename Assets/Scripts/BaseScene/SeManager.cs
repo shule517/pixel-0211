@@ -14,17 +14,24 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
         // 次のシーンでも破棄しない
         DontDestroyOnLoad(gameObject);
 
+        Debug.Log("audioSource = GetComponent<AudioSource>();");
         audioSource = GetComponent<AudioSource>();
+        Debug.Log("audioSource: " + audioSource);
         audioClips = Resources.LoadAll<AudioClip>("SE");
         audioClipDict = audioClips.ToDictionary(clip => clip.name, clip => clip);
     }
 
     public void Play(string filePath, float pitch = 1f)
     {
+        Debug.Log("1 audioSource: " + audioSource);
         audioSource.pitch = pitch;
+        Debug.Log("2 audioSource.pitch: " + audioSource.pitch);
+        Debug.Log("2 audioClipDict: " + audioClipDict);
 
         var audioClip = audioClipDict[filePath];
+        Debug.Log("3");
         audioSource.PlayOneShot(audioClip);
+        Debug.Log("4");
     }
 
     public void Stop()

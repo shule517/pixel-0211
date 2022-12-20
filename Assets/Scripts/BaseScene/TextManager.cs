@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class TextManager : SingletonMonoBehaviour<TextManager>
 {
-    [SerializeField] private Text text;
+    [SerializeField] public Text text;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         text = GetComponent<Text>();
     }
 
-    public void Speech(string str, float audioPitch = 1f)
+    public void Speech(string str, float audioPitch = 0.8f)
     {
         StartCoroutine(TalkText(audioPitch, str));
     }
@@ -34,17 +34,18 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
 
     public IEnumerator TalkText(float pitch, string talkingText)
     {
+        Debug.Log("text.text:" + text.text);
         int messageCount = 0;
         Assign("");
 
-        float minPitch = pitch - 0.5f;
-        float maxPitch = pitch + 0.5f;
+        float minPitch = pitch - 0.02f;
+        float maxPitch = pitch + 0f;
 
         foreach (var str in talkingText)
         {
             if (messageCount % 2 == 0)
             {
-                SeManager.Instance.Play("決定ボタンを押す44", Random.Range(minPitch, maxPitch));
+                SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch));
             }
             Append(str.ToString());
             messageCount++;
