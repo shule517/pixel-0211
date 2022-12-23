@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     AudioSource audioSourceSeWalk;
     // AudioSource audioSourceTalk;
     Animator animator;
+    private SpriteRenderer spriteRenderer;
     Tween tween = null;
 
     // Start is called before the first frame update
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     {
         audioSourceSeWalk = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     /// <summary> 起動時 </summary>
@@ -44,6 +46,24 @@ public class Player : MonoBehaviour
     private void Update()
     {
         UpdateMove(_moveVector);
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            _moveVector = new Vector3(-1, 0f, 0f);
+            spriteRenderer.flipX = true;
+            nowAnime = walkAnime;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            _moveVector = new Vector3(1, 0f, 0f);
+            spriteRenderer.flipX = false;
+            nowAnime = walkAnime;
+        }
+        else
+        {
+            _moveVector = new Vector3(0, 0f, 0f);
+            nowAnime = standAnime;
+        }
 
         // スペースキーの取得
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -119,6 +139,15 @@ public class Player : MonoBehaviour
         {
             oldAnime = nowAnime;
             animator.Play(nowAnime);
+
+            if (nowAnime == walkAnime)
+            {
+                BgmManager.Instance.Play("se_walk1");
+            }
+            else
+            {
+                BgmManager.Instance.Stop();
+            }
         }
     }
 

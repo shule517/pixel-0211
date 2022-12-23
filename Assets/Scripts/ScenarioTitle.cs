@@ -14,6 +14,7 @@ public class ScenarioTitle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TextManager.Instance.Assign("");
         Sequence moveSequence = DOTween.Sequence();
 
         // Œõ‚ð‚Ó‚í‚Ó‚í
@@ -26,7 +27,7 @@ public class ScenarioTitle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             SceneManager.LoadScene("OpeningScene");
         }

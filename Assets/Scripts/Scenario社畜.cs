@@ -1,58 +1,116 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Collections;
+using DG.Tweening;
+using UnityEngine.Rendering.Universal;
 
-public class Scenarioé–í{ : MonoBehaviour
+public class ScenarioÁ§æÁïú : MonoBehaviour
 {
+    public Light2D light2D;
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        // BaseSceneÇÃÉçÅ[Éhë“Çø
-        yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
 
-        while (true)
-        {
-            TextManager.Instance.Speech("Ç¶Ç¡Åc");
+        StartCoroutine(TypingBgm());
 
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
-            yield return null;
+        yield return DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
-            TextManager.Instance.Speech("ÉàÉãÇøÇ·ÇÒ Ç‚ÇﬂÇøÇ·Ç§ÇÒÇ≈Ç∑Ç©Åc");
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
-            yield return null;
+        // BaseScene„ÅÆ„É≠„Éº„ÉâÂæÖ„Å°
+        //yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
+        yield return new WaitForSeconds(4.5f);
 
-            TextManager.Instance.Speech("ÇÌÇ©ÇËÇ‹ÇµÇΩ");
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
-            yield return null;
-        }
+        TextManager.Instance.Speech("„Åà„Å£", 0.8f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return null;
+
+        TextManager.Instance.Speech("„Åì„Çå‰ªäÊó•‰∏≠„Åß„Åô„Åã‚Ä¶Ôºü", 0.8f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return null;
+
+        TextManager.Instance.Speech("„ÅÇ„Å£ „ÅØ„ÅÑ„ÄÇ", 0.8f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return null;
+
+        TextManager.Instance.Speech("„Çè„Åã„Çä„Åæ„Åó„Åü„ÄÇ", 0.8f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return null;
+
+        TextManager.Instance.Speech("„Å™„Çì„Å®„Åã„Åó„Åæ„Åô„ÄÇ", 0.8f);
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return null;
+
+        TextManager.Instance.Speech("");
+        yield return new WaitForSeconds(4.5f);
+
+        // ÔºìÂõûÁõÆ„Å†„Åë Â∏∞„ÇãÊÑèÊÄù ÂàÜÂ≤ê                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+        TextManager.Instance.Speech("Â∏∞„Çç„ÅÜ", 0.8f);
+
+
+        //TextManager.Instance.Speech("„Åà„Å£‚Ä¶", 0.8f);
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return null;
+
+        //TextManager.Instance.Speech("„Çà„Çã„Å°„ÇÉ„Çì „ÇÑ„ÇÅ„Å°„ÇÉ„ÅÜ„Çì„Åß„Åô„Åã‚Ä¶", 0.8f);
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return null;
+
+        //TextManager.Instance.Speech("„Åù„ÅÜ„Å™„Çì„Åß„Åô„Å≠", 0.8f);
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return null;
+
+        //TextManager.Instance.Speech("„Çè„Åã„Çä„Åæ„Åó„Åü", 0.8f);
+        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return null;
+
+        //TextManager.Instance.Speech("");
+
+        yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+
+        SceneManager.LoadScene("OpeningScene");
     }
-
-    //// Start is called before the first frame update
-    //async void Start()
-    //{
-    //    await Task.Delay(3000); // BaseSceneÇÃÉçÅ[Éhë“Çø
-
-    //    TextManager.Instance.Speech("Ç¶Ç¡Åc");
-    //    while (!Input.GetKeyDown(KeyCode.Z)) { await Task.Delay(1); }
-
-    //    while (true)
-    //    {
-    //        await Task.Delay(1);
-    //        TextManager.Instance.Speech("ÉàÉãÇøÇ·ÇÒ Ç‚ÇﬂÇøÇ·Ç§ÇÒÇ≈Ç∑Ç©Åc");
-    //        while (!Input.GetKeyDown(KeyCode.Z)) { await Task.Delay(1); }
-    //    }
-
-    //    TextManager.Instance.Speech("ÇÌÇ©ÇËÇ‹ÇµÇΩ");
-    //}
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("ì•êÿScene");
+            TextManager.Instance.Speech("");
+            SceneManager.LoadScene("Â§úÈÅìScene");
+        }
+    }
+
+    private IEnumerator TypingBgm()
+    {
+        var typingTexts = new string[] {
+            "    ",
+            "        ",
+            "                    ",
+        };
+        var talkingText = typingTexts[Random.Range(0, typingTexts.Length)];
+
+        StartCoroutine(TypingSe(2.5f, talkingText));
+        yield return new WaitForSeconds(Random.Range(0.5f, 2.0f));
+
+        StartCoroutine(TypingBgm());
+    }
+
+    private IEnumerator TypingSe(float pitch, string talkingText)
+    {
+        int messageCount = 0;
+
+        float minPitch = pitch - 0.5f;
+        float maxPitch = pitch + 0.5f;
+
+        foreach (var str in talkingText)
+        {
+            if (messageCount % 2 == 0)
+            {
+                SeManager.Instance.Play("„Ç´„Éº„ÇΩ„É´ÁßªÂãï2", Random.Range(minPitch, maxPitch));
+            }
+            messageCount++;
+
+            yield return new WaitForSeconds(0.04f);
         }
     }
 }

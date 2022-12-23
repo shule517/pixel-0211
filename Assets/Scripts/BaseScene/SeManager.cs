@@ -21,7 +21,7 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
         audioClipDict = audioClips.ToDictionary(clip => clip.name, clip => clip);
     }
 
-    public void Play(string filePath, float pitch = 1f)
+    public void Play(string filePath, float pitch = 1f, float volumeScale = 1f)
     {
         Debug.Log("1 audioSource: " + audioSource);
         audioSource.pitch = pitch;
@@ -30,7 +30,7 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
 
         var audioClip = audioClipDict[filePath];
         Debug.Log("3");
-        audioSource.PlayOneShot(audioClip);
+        audioSource.PlayOneShot(audioClip, volumeScale);
         Debug.Log("4");
     }
 

@@ -17,12 +17,12 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         text = GetComponent<Text>();
     }
 
-    public void Speech(string str, float audioPitch = 0.8f)
+    public void Speech(string str, float audioPitch = 1f)
     {
         StartCoroutine(TalkText(audioPitch, str));
     }
 
-    void Assign(string str)
+    public void Assign(string str)
     {
         text.text = str;
     }
@@ -43,7 +43,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
 
         foreach (var str in talkingText)
         {
-            if (messageCount % 2 == 0)
+            if (pitch > 0.01f && messageCount % 2 == 0)
             {
                 SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch));
             }
