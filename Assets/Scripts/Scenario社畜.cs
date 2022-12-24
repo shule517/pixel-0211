@@ -67,7 +67,8 @@ public class Scenario社畜 : MonoBehaviour
 
         yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
-        SceneManager.LoadScene("OpeningScene");
+        SceneManager.LoadScene("夜道Scene");
+        //SceneManager.LoadScene("OpeningScene");
     }
 
     // Update is called once per frame

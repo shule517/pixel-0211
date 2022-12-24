@@ -35,7 +35,7 @@ public class ScenarioOpening : MonoBehaviour
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         yield return null;
 
-        TextManager.Instance.Speech("ƒAƒ‰[ƒ€‚ðŽ~‚ß‚é „Ÿ (A)", 0f);
+        TextManager.Instance.Speech("„Ÿ ƒAƒ‰[ƒ€‚ðŽ~‚ß‚é „Ÿ (A)", 0f);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         yield return null;
