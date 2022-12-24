@@ -17,7 +17,7 @@ public class ScenarioTitle : MonoBehaviour
         TextManager.Instance.Assign("");
         Sequence moveSequence = DOTween.Sequence();
 
-        // Œõ‚ð‚Ó‚í‚Ó‚í
+        // å…‰ã‚’ãµã‚ãµã‚
         moveSequence.Append(DOTween.To(() => minIntensity, (float x) => light2D.intensity = x, maxIntensity, interval).SetEase(Ease.InOutQuad));
         moveSequence.Append(DOTween.To(() => maxIntensity, (float x) => light2D.intensity = x, minIntensity, interval).SetEase(Ease.InOutQuad));
         moveSequence.SetDelay(0.5f);

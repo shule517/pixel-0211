@@ -11,7 +11,6 @@ public class Scenario社畜 : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-
         StartCoroutine(TypingBgm());
 
         yield return DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();

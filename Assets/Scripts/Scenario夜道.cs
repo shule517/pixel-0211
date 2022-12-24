@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Scenario–é“¹ : MonoBehaviour
+public class Scenarioå¤œé“ : MonoBehaviour
 {
     public GameObject player;
     public float minX;
@@ -17,11 +17,11 @@ public class Scenario–é“¹ : MonoBehaviour
     {
         if (player.transform.position.x  < minX)
         {
-            SceneManager.LoadScene("‚æ‚¶‚ÜScene");
+            SceneManager.LoadScene("ã‚ˆã˜ã¾Scene");
         }
         else if (maxX < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("‚æ‚¶‚ÜScene");
+            SceneManager.LoadScene("ã‚ˆã˜ã¾Scene");
         }
     }
 }

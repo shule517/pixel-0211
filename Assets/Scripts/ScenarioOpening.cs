@@ -12,51 +12,51 @@ public class ScenarioOpening : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        // Å‰‚Í^‚ÁˆÃ
+        // æœ€åˆã¯çœŸã£æš—
         light2D.intensity = 0;
         //Sequence moveSequence = DOTween.Sequence();
 
-        // BaseScene‚Ìƒ[ƒh‘Ò‚¿
+        // BaseSceneã®ãƒ­ãƒ¼ãƒ‰å¾…ã¡
         //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         //yield return null;
 
         yield return new WaitForSeconds(1.5f);
 
-        BgmManager.Instance.Play("ƒoƒCƒu‰¹”01");
+        BgmManager.Instance.Play("ãƒã‚¤ãƒ–éŸ³ï¼ƒ01");
 
-        //TextManager.Instance.Assign("ƒAƒ‰[ƒ€‰¹");
+        //TextManager.Instance.Assign("ã‚¢ãƒ©ãƒ¼ãƒ éŸ³");
         TextManager.Instance.Assign("");
         yield return new WaitForSeconds(2.5f);
 
-        // –Ú‚ğ‚ ‚¯‚½
+        // ç›®ã‚’ã‚ã‘ãŸ
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
-        TextManager.Instance.Speech("‚à‚¤’©‚¾c (A)", 0.8f);
+        TextManager.Instance.Speech("ã‚‚ã†æœã â€¦ (A)", 0.8f);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         yield return null;
 
-        TextManager.Instance.Speech("„Ÿ ƒAƒ‰[ƒ€‚ğ~‚ß‚é „Ÿ (A)", 0f);
+        TextManager.Instance.Speech("â”€ ã‚¢ãƒ©ãƒ¼ãƒ ã‚’æ­¢ã‚ã‚‹ â”€ (A)", 0f);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         yield return null;
 
-        //TextManager.Instance.Assign("ƒAƒ‰[ƒ€‚ğ~‚ß‚é (A)");
+        //TextManager.Instance.Assign("ã‚¢ãƒ©ãƒ¼ãƒ ã‚’æ­¢ã‚ã‚‹ (A)");
 
         //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         //yield return null;
 
-        // ƒAƒ‰[ƒ€‚ğ~‚ß‚é
+        // ã‚¢ãƒ©ãƒ¼ãƒ ã‚’æ­¢ã‚ã‚‹
         BgmManager.Instance.Stop();
         audioSource.Pause();
         TextManager.Instance.Assign("");
 
         yield return new WaitForSeconds(2.5f);
-        TextManager.Instance.Speech("‚Â‚©‚ê‚½c (A)", 0.8f);
+        TextManager.Instance.Speech("ã¤ã‹ã‚ŒãŸâ€¦ (A)", 0.8f);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         yield return null;
 
-        TextManager.Instance.Speech("‚Å‚àA‚à‚¤s‚©‚È‚«‚á (A)", 0.8f);
+        TextManager.Instance.Speech("ã§ã‚‚ã€ã‚‚ã†è¡Œã‹ãªãã‚ƒ (A)", 0.8f);
 
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
         yield return null;
@@ -64,23 +64,23 @@ public class ScenarioOpening : MonoBehaviour
         TextManager.Instance.Assign("");
         yield return new WaitForSeconds(2.5f);
 
-        SeManager.Instance.Play("‚¨’…‘Ö‚¦");
+        SeManager.Instance.Play("ãŠç€æ›¿ãˆ");
         yield return new WaitForSeconds(5.5f);
         SeManager.Instance.Stop();
         yield return new WaitForSeconds(3.5f);
-        SeManager.Instance.Play("ƒhƒA‚ğŠJ‚¯‚é3");
+        SeManager.Instance.Play("ãƒ‰ã‚¢ã‚’é–‹ã‘ã‚‹3");
         yield return new WaitForSeconds(1.5f);
-        SeManager.Instance.Play("ƒhƒA‚ğ•Â‚ß‚é2");
+        SeManager.Instance.Play("ãƒ‰ã‚¢ã‚’é–‰ã‚ã‚‹2");
         yield return new WaitForSeconds(2.5f);
-        SeManager.Instance.Play("“dÔ’Ê‰ß1");
+        SeManager.Instance.Play("é›»è»Šé€šé1");
 
-        // Œõ‚Å”ò‚Î‚·
+        // å…‰ã§é£›ã°ã™
         yield return DOTween.Sequence().Append(DOTween.To(() => 1, (float x) => light2D.intensity = x, 4f, 5f)).WaitForCompletion();
         yield return new WaitForSeconds(2.5f);
         BgmManager.Instance.Stop();
 
-        // Ğ’{ƒV[ƒ“‚ÖØ‚è‘Ö‚¦
-        SceneManager.LoadScene("Ğ’{Scene");
+        // ç¤¾ç•œã‚·ãƒ¼ãƒ³ã¸åˆ‡ã‚Šæ›¿ãˆ
+        SceneManager.LoadScene("ç¤¾ç•œScene");
     }
 
     // Update is called once per frame
