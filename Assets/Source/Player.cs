@@ -48,18 +48,37 @@ public class Player : MonoBehaviour
         UpdateMove(_moveVector);
 
         float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        _moveVector = new Vector3(0f, 0f, 0f);
+
         if (horizontal < 0)
         {
-            _moveVector = new Vector3(-1, 0f, 0f);
+            _moveVector.x = -1f;
+            //_moveVector = new Vector3(-1, 0f, 0f);
             spriteRenderer.flipX = true;
             nowAnime = walkAnime;
         }
         else if (0 < horizontal)
         {
-            _moveVector = new Vector3(1, 0f, 0f);
+            _moveVector.x = 1f;
+            //_moveVector = new Vector3(1, 0f, 0f);
             spriteRenderer.flipX = false;
             nowAnime = walkAnime;
         }
+        // else if (vertical < 0)
+        // {
+        //     _moveVector.y = -0.1f;
+        //     //_moveVector = new Vector3(0f, -0.1f, 0f);
+        //     //spriteRenderer.flipX = true;
+        //     nowAnime = walkAnime;
+        // }
+        // else if (0 < vertical)
+        // {
+        //     _moveVector.y = 0.1f;
+        //     //_moveVector = new Vector3(0f, 0.1f, 0f);
+        //     //spriteRenderer.flipX = false;
+        //     nowAnime = walkAnime;
+        // }
         else
         {
             _moveVector = new Vector3(0, 0f, 0f);
