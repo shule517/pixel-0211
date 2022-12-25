@@ -47,14 +47,6 @@ public class Player : MonoBehaviour
     {
         UpdateMove(_moveVector);
 
-        if (Input.GetButtonDown("決定"))
-        {
-            Debug.Log("決定");
-            _moveVector = new Vector3(-1, 0f, 0f);
-            spriteRenderer.flipX = true;
-            nowAnime = walkAnime;
-        }
-
         float horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0)
         {

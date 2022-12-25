@@ -20,23 +20,23 @@ public class Scenario社畜 : MonoBehaviour
         yield return new WaitForSeconds(4.5f);
 
         TextManager.Instance.Speech("えっ", 0.8f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
         TextManager.Instance.Speech("これ今日中ですか…？", 0.8f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
         TextManager.Instance.Speech("あっ はい。", 0.8f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
         TextManager.Instance.Speech("わかりました。", 0.8f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
         TextManager.Instance.Speech("なんとかします。", 0.8f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
         TextManager.Instance.Speech("");
@@ -44,24 +44,24 @@ public class Scenario社畜 : MonoBehaviour
 
         // ３回目だけ 帰る意思 分岐                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
         TextManager.Instance.Speech("帰ろう", 0.8f);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
         TextManager.Instance.Assign("");
 
         //TextManager.Instance.Speech("えっ…", 0.8f);
-        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         //yield return null;
 
         //TextManager.Instance.Speech("よるちゃん やめちゃうんですか…", 0.8f);
-        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         //yield return null;
 
         //TextManager.Instance.Speech("そうなんですね", 0.8f);
-        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         //yield return null;
 
         //TextManager.Instance.Speech("わかりました", 0.8f);
-        //yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Z));
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         //yield return null;
 
         //TextManager.Instance.Speech("");
