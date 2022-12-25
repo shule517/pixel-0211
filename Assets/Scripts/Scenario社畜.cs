@@ -7,8 +7,6 @@ using UnityEngine.Rendering.Universal;
 public class Scenario社畜 : MonoBehaviour
 {
     public Light2D light2D;
-
-    [SerializeField]
     static int days = 0;
 
     // Start is called before the first frame update
