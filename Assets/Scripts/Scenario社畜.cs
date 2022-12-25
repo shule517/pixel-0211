@@ -8,68 +8,79 @@ public class Scenario社畜 : MonoBehaviour
 {
     public Light2D light2D;
 
+    [SerializeField]
+    static int days = 0;
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
         StartCoroutine(TypingBgm());
 
+        // 暗転から復帰
         yield return DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
-
-        // BaseSceneのロード待ち
-        //yield return new WaitUntil(() => Input.GetMouseButtonDown(0));
         yield return new WaitForSeconds(4.5f);
 
-        TextManager.Instance.Speech("えっ", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+        if (days == 0)
+        {
+            TextManager.Instance.Speech("えっ… (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        TextManager.Instance.Speech("これ今日中ですか…？", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+            TextManager.Instance.Speech("これ今日中ですか…？ (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        TextManager.Instance.Speech("あっ はい。", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+            TextManager.Instance.Speech("あっ はい。 (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        TextManager.Instance.Speech("わかりました。", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+            TextManager.Instance.Speech("わかりました。 (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        TextManager.Instance.Speech("なんとかします。", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+            TextManager.Instance.Speech("なんとかします。 (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        TextManager.Instance.Speech("");
-        yield return new WaitForSeconds(4.5f);
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(4.5f);
 
-        // ３回目だけ 帰る意思 分岐                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-        TextManager.Instance.Speech("帰ろう", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
+            // 暗転
+            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
-        //TextManager.Instance.Speech("えっ…", 0.8f);
-        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        //yield return null;
+            days++;
+            SceneManager.LoadScene("OpeningScene");
+        }
+        else
+        {
+            TextManager.Instance.Speech("えっ… (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        //TextManager.Instance.Speech("よるちゃん やめちゃうんですか…", 0.8f);
-        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        //yield return null;
+            TextManager.Instance.Speech("よるちゃん やめちゃうんですか… (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        //TextManager.Instance.Speech("そうなんですね", 0.8f);
-        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        //yield return null;
+            TextManager.Instance.Speech("そうなんですね。 (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        //TextManager.Instance.Speech("わかりました", 0.8f);
-        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        //yield return null;
+            TextManager.Instance.Speech("わかりました。 (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        //TextManager.Instance.Speech("");
+            // ３回目だけ 帰る意思 分岐
+            TextManager.Instance.Speech("帰ろう。 (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
 
-        yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            // 暗転
+            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
-        SceneManager.LoadScene("夜道Scene");
-        //SceneManager.LoadScene("OpeningScene");
+            days++;
+            SceneManager.LoadScene("夜道Scene");
+        }
     }
 
     // Update is called once per frame

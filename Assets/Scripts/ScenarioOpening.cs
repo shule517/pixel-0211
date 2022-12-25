@@ -14,17 +14,10 @@ public class ScenarioOpening : MonoBehaviour
     {
         // 最初は真っ暗
         light2D.intensity = 0;
-        //Sequence moveSequence = DOTween.Sequence();
-
-        // BaseSceneのロード待ち
-        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        //yield return null;
 
         yield return new WaitForSeconds(1.5f);
 
         BgmManager.Instance.Play("バイブ音＃01");
-
-        //TextManager.Instance.Assign("アラーム音");
         TextManager.Instance.Assign("");
         yield return new WaitForSeconds(2.5f);
 
@@ -39,11 +32,6 @@ public class ScenarioOpening : MonoBehaviour
 
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
-
-        //TextManager.Instance.Assign("アラームを止める (A)");
-
-        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        //yield return null;
 
         // アラームを止める
         BgmManager.Instance.Stop();
