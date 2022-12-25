@@ -47,13 +47,22 @@ public class Player : MonoBehaviour
     {
         UpdateMove(_moveVector);
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetButtonDown("決定"))
+        {
+            Debug.Log("決定");
+            _moveVector = new Vector3(-1, 0f, 0f);
+            spriteRenderer.flipX = true;
+            nowAnime = walkAnime;
+        }
+
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal < 0)
         {
             _moveVector = new Vector3(-1, 0f, 0f);
             spriteRenderer.flipX = true;
             nowAnime = walkAnime;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (0 < horizontal)
         {
             _moveVector = new Vector3(1, 0f, 0f);
             spriteRenderer.flipX = false;
