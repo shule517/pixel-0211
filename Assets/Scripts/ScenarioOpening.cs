@@ -8,6 +8,7 @@ public class ScenarioOpening : MonoBehaviour
 {
     public Light2D light2D;
     public AudioSource audioSource;
+    static int days = 0;
 
     // Start is called before the first frame update
     IEnumerator Start()
@@ -28,23 +29,50 @@ public class ScenarioOpening : MonoBehaviour
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
-        TextManager.Instance.Speech("もう朝だ… (A)", 0.8f);
-
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
         // アラームを止める
         BgmManager.Instance.Stop();
         audioSource.Pause();
         TextManager.Instance.Assign("");
 
         yield return new WaitForSeconds(2.5f);
-        TextManager.Instance.Speech("つかれた… (A)", 0.8f);
 
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+        if (days == 0) {
+            TextManager.Instance.Speech("もう朝だ… (A)", 0.8f);
 
-        TextManager.Instance.Speech("でも、もう行かなきゃ (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.5f);
+
+            TextManager.Instance.Speech("つかれた… (A)", 0.8f);
+
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.5f);
+
+            TextManager.Instance.Speech("でも、もう行かなきゃ (A)", 0.8f);
+        }
+        else
+        {
+            TextManager.Instance.Speech("… (A)", 0.8f);
+
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+
+            // アラームを止める
+            BgmManager.Instance.Stop();
+            audioSource.Pause();
+            TextManager.Instance.Assign("");
+
+            yield return new WaitForSeconds(2.5f);
+            TextManager.Instance.Speech("… (A)", 0.8f);
+
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+
+            TextManager.Instance.Speech("… (A)", 0.8f);
+        }
 
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
@@ -66,6 +94,8 @@ public class ScenarioOpening : MonoBehaviour
         yield return DOTween.Sequence().Append(DOTween.To(() => 1, (float x) => light2D.intensity = x, 4f, 5f)).WaitForCompletion();
         yield return new WaitForSeconds(2.5f);
         BgmManager.Instance.Stop();
+
+        days++;
 
         // 社畜シーンへ切り替え
         SceneManager.LoadScene("社畜Scene");

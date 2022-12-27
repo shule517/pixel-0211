@@ -20,6 +20,30 @@ public class Scenario社畜 : MonoBehaviour
 
         if (days == 0)
         {
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(4.5f);
+
+            BgmManager.Instance.Play("busy-office-1");
+            // 初日は無言でいきたい
+            // 人のしゃべりごえ ざわざわ
+            // 光で一日を表現する
+
+            //BgmManager.Instance.audioSource.volume
+
+            DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => BgmManager.Instance.audioSource.volume = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            yield return new WaitForSeconds(14.5f);
+
+            DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            yield return new WaitForSeconds(14.5f);
+
+            // 暗転
+            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+
+            days++;
+            SceneManager.LoadScene("OpeningScene");
+        }
+        else if (days == 1)
+        {
             TextManager.Instance.Speech("えっ… (A)", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
@@ -49,7 +73,7 @@ public class Scenario社畜 : MonoBehaviour
             days++;
             SceneManager.LoadScene("OpeningScene");
         }
-        else
+        else if (days == 2)
         {
             TextManager.Instance.Speech("えっ… (A)", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));

@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class BgmManager : SingletonMonoBehaviour<BgmManager>
 {
-    [SerializeField] private AudioSource audioSource;
+    public AudioSource audioSource;
     [SerializeField] private AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDict;
 
