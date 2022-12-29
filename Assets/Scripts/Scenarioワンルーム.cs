@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-public class ScenarioOpening : MonoBehaviour
+public class Scenarioワンルーム : MonoBehaviour
 {
     public Light2D light2D;
     public AudioSource audioSource;
@@ -37,25 +37,33 @@ public class ScenarioOpening : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        if (days == 0) {
+        if (days == 0)
+        {
+            // 初日
             TextManager.Instance.Speech("もう朝だ… (A)", 0.8f);
 
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
             TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
 
             TextManager.Instance.Speech("つかれた… (A)", 0.8f);
 
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
             TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.8f);
 
             TextManager.Instance.Speech("でも、もう行かなきゃ (A)", 0.8f);
         }
+        else if (days == 1)
+        {
+            // 2日目
+            TextManager.Instance.Speech("… (A)", 0.8f);
+        }
         else
         {
+            // 3日目
             TextManager.Instance.Speech("… (A)", 0.8f);
         }
 

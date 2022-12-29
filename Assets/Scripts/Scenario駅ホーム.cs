@@ -19,7 +19,7 @@ public class Scenario駅ホーム : MonoBehaviour
         {
             SceneManager.LoadScene("踏切Scene");
         }
-        else if (maxX < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
+        else if (maxX < player.transform.position.x)
         {
             SceneManager.LoadScene("美浜Scene");
         }

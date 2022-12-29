@@ -18,19 +18,21 @@ public class Scenario社畜 : MonoBehaviour
         yield return DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
         yield return new WaitForSeconds(4.5f);
 
+        TextManager.Instance.Assign("");
+        yield return new WaitForSeconds(4.5f);
+
+        // 人のしゃべり声 ざわざわ
+        BgmManager.Instance.Play("busy-office-1");
+        DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => BgmManager.Instance.audioSource.volume = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+
         if (days == 0)
         {
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(4.5f);
-
-            BgmManager.Instance.Play("busy-office-1");
             // 初日は無言でいきたい
             // 人のしゃべりごえ ざわざわ
             // 光で一日を表現する → Eastword参考にできそう
-
-            DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => BgmManager.Instance.audioSource.volume = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
             yield return new WaitForSeconds(14.5f);
 
+            // ざわざわ声をフェードアウト
             DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
             yield return new WaitForSeconds(14.5f);
 
@@ -38,14 +40,12 @@ public class Scenario社畜 : MonoBehaviour
             yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
             days++;
-            SceneManager.LoadScene("OpeningScene");
+            SceneManager.LoadScene("ワンルームScene");
         }
         else if (days == 1)
         {
-            TextManager.Instance.Assign("");
+            // 2日目
             yield return new WaitForSeconds(4.5f);
-
-            BgmManager.Instance.Play("busy-office-1");
 
             TextManager.Instance.Speech("えっ… (A)", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -70,14 +70,21 @@ public class Scenario社畜 : MonoBehaviour
             TextManager.Instance.Assign("");
             yield return new WaitForSeconds(4.5f);
 
+            // ざわざわ声をフェードアウト
+            DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            yield return new WaitForSeconds(14.5f);
+
             // 暗転
             yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
             days++;
-            SceneManager.LoadScene("OpeningScene");
+            SceneManager.LoadScene("ワンルームScene");
         }
-        else if (days == 2)
+        else
         {
+            // 3日目
+            yield return new WaitForSeconds(4.5f);
+
             TextManager.Instance.Speech("えっ… (A)", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
@@ -94,14 +101,18 @@ public class Scenario社畜 : MonoBehaviour
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
 
+            // ざわざわ声をフェードアウト
+            DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            yield return new WaitForSeconds(14.5f);
+
+            // 暗転
+            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+
             // ３回目だけ 帰る意思 分岐
             TextManager.Instance.Speech("帰ろう。 (A)", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
             TextManager.Instance.Assign("");
-
-            // 暗転
-            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
             days++;
             SceneManager.LoadScene("夜道Scene");
@@ -111,11 +122,6 @@ public class Scenario社畜 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TextManager.Instance.Speech("");
-            SceneManager.LoadScene("夜道Scene");
-        }
     }
 
     private IEnumerator TypingBgm()
@@ -144,7 +150,7 @@ public class Scenario社畜 : MonoBehaviour
         {
             if (messageCount % 2 == 0)
             {
-                SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch), 2);
+                SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch), 1, 2);
             }
             messageCount++;
 

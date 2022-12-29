@@ -19,7 +19,7 @@ public class Scenario夜道 : MonoBehaviour
         {
             SceneManager.LoadScene("よじまScene");
         }
-        else if (maxX < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
+        else if (maxX < player.transform.position.x)
         {
             SceneManager.LoadScene("よじまScene");
         }

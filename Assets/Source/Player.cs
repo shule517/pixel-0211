@@ -85,13 +85,13 @@ public class Player : MonoBehaviour
             nowAnime = standAnime;
         }
 
-        // スペースキーの取得
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            //音を鳴らす
-            // audioSourceTalk.PlayOneShot();
-            // audioSourceTalk.Play();
-            audioSourceSeWalk.PlayOneShot(soundTalk);
-        }
+        //// スペースキーの取得
+        //if (Input.GetKeyDown(KeyCode.Space)) {
+        //    //音を鳴らす
+        //    // audioSourceTalk.PlayOneShot();
+        //    // audioSourceTalk.Play();
+        //    audioSourceSeWalk.PlayOneShot(soundTalk);
+        //}
 
         // クリックしたオブジェクトまで移動
         if (Input.GetMouseButtonDown(0)) {

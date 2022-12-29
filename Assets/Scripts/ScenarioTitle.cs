@@ -29,7 +29,7 @@ public class ScenarioTitle : MonoBehaviour
     {
         if (Input.GetButtonDown("決定"))
         {
-            SceneManager.LoadScene("OpeningScene");
+            SceneManager.LoadScene("ワンルームScene");
         }
     }
 }
