@@ -26,9 +26,7 @@ public class Scenario社畜 : MonoBehaviour
             BgmManager.Instance.Play("busy-office-1");
             // 初日は無言でいきたい
             // 人のしゃべりごえ ざわざわ
-            // 光で一日を表現する
-
-            //BgmManager.Instance.audioSource.volume
+            // 光で一日を表現する → Eastword参考にできそう
 
             DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => BgmManager.Instance.audioSource.volume = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
             yield return new WaitForSeconds(14.5f);
@@ -44,6 +42,11 @@ public class Scenario社畜 : MonoBehaviour
         }
         else if (days == 1)
         {
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(4.5f);
+
+            BgmManager.Instance.Play("busy-office-1");
+
             TextManager.Instance.Speech("えっ… (A)", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
@@ -141,7 +144,7 @@ public class Scenario社畜 : MonoBehaviour
         {
             if (messageCount % 2 == 0)
             {
-                SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch));
+                SeManager.Instance.Play("カーソル移動2", Random.Range(minPitch, maxPitch), 2);
             }
             messageCount++;
 

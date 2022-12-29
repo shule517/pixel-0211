@@ -5,7 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class SeManager : SingletonMonoBehaviour<SeManager>
 {
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] public AudioSource audioSource2;
     [SerializeField] private AudioClip[] audioClips;
     private Dictionary<string, AudioClip> audioClipDict;
 
@@ -14,24 +15,17 @@ public class SeManager : SingletonMonoBehaviour<SeManager>
         // 次のシーンでも破棄しない
         DontDestroyOnLoad(gameObject);
 
-        Debug.Log("audioSource = GetComponent<AudioSource>();");
-        audioSource = GetComponent<AudioSource>();
-        Debug.Log("audioSource: " + audioSource);
         audioClips = Resources.LoadAll<AudioClip>("SE");
         audioClipDict = audioClips.ToDictionary(clip => clip.name, clip => clip);
     }
 
-    public void Play(string filePath, float pitch = 1f, float volumeScale = 1f)
+    public void Play(string filePath, float pitch = 1f, float volumeScale = 1f, int audioSourceNo = 1)
     {
-        Debug.Log("1 audioSource: " + audioSource);
-        audioSource.pitch = pitch;
-        Debug.Log("2 audioSource.pitch: " + audioSource.pitch);
-        Debug.Log("2 audioClipDict: " + audioClipDict);
-
         var audioClip = audioClipDict[filePath];
-        Debug.Log("3");
-        audioSource.PlayOneShot(audioClip, volumeScale);
-        Debug.Log("4");
+        var audio = audioSourceNo == 1 ? audioSource : audioSource2;
+
+        audio.pitch = pitch;
+        audio.PlayOneShot(audioClip, volumeScale);
     }
 
     public void Stop()
