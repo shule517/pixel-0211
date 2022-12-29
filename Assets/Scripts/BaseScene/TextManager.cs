@@ -34,21 +34,28 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
 
     public IEnumerator TalkText(float pitch, string talkingText)
     {
-        Debug.Log("text.text:" + text.text);
         int messageCount = 0;
         Assign("");
 
         float minPitch = pitch - 0.02f;
         float maxPitch = pitch + 0f;
 
-        foreach (var str in talkingText)
+        foreach (var charactor in talkingText)
         {
+            var str = charactor.ToString();
+            Append(str);
+            messageCount++;
+
+            // 空文字は音を鳴らさない
+            if (String.IsNullOrEmpty(str.Trim()))
+            {
+                continue;
+            }
+
             if (pitch > 0.01f && messageCount % 2 == 0)
             {
                 SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch));
             }
-            Append(str.ToString());
-            messageCount++;
 
             yield return new WaitForSeconds(0.04f);
         }

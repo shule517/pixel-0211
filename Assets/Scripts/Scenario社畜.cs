@@ -9,6 +9,12 @@ public class Scenario社畜 : MonoBehaviour
     public Light2D light2D;
     static int days = 0;
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void Init()
+    {
+        days = 0;
+    }
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
