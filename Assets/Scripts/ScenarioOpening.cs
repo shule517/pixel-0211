@@ -22,8 +22,6 @@ public class ScenarioOpening : MonoBehaviour
         TextManager.Instance.Assign("");
         yield return new WaitForSeconds(2.5f);
 
-        // 目をあけた
-        yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
         TextManager.Instance.Speech("─ アラームを止める ─ (A)", 0f);
 
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -33,6 +31,9 @@ public class ScenarioOpening : MonoBehaviour
         BgmManager.Instance.Stop();
         audioSource.Pause();
         TextManager.Instance.Assign("");
+
+        // 目をあけた
+        yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
         yield return new WaitForSeconds(2.5f);
 
@@ -55,22 +56,6 @@ public class ScenarioOpening : MonoBehaviour
         }
         else
         {
-            TextManager.Instance.Speech("… (A)", 0.8f);
-
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            // アラームを止める
-            BgmManager.Instance.Stop();
-            audioSource.Pause();
-            TextManager.Instance.Assign("");
-
-            yield return new WaitForSeconds(2.5f);
-            TextManager.Instance.Speech("… (A)", 0.8f);
-
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
             TextManager.Instance.Speech("… (A)", 0.8f);
         }
 

@@ -26,7 +26,6 @@ public class BgmManager : SingletonMonoBehaviour<BgmManager>
         audioSource.volume = 1f;
 
         var audioClip = audioClipDict[filePath];
-        Debug.Log("audioClip: " + audioClip.ToString());
         audioSource.clip = audioClip;
         audioSource.Play();
     }
