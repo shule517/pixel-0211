@@ -222,6 +222,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1e42bcc4481842d581067561a070aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speechTexts:
+  - "\u304A\u306A\u304B\u3059\u3044\u305F\u2026"
+  - "\u3088\u3058\u307E \u306E \u306B\u304F\u307E\u3093 \u305F\u3079\u305F\u3044\u2026"
   interval: 0.7
 --- !u!50 &112476698
 Rigidbody2D:

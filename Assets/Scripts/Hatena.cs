@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class Hatena : MonoBehaviour
 {
+    public List<string> speechTexts;
     public float interval = 1.5f;
     private SpriteRenderer spriteRender;
 
@@ -23,8 +25,22 @@ public class Hatena : MonoBehaviour
     {
         if (spriteRender.enabled && Input.GetButtonDown("決定"))
         {
-            TextManager.Instance.Speech("よじま の にくまん たべたい…");
+            if (string.IsNullOrEmpty(TextManager.Instance.text.text))
+            {
+                StartCoroutine(Speech());
+            }
         }
+    }
+
+    IEnumerator Speech()
+    {
+        foreach (var text in speechTexts)
+        {
+            yield return TextManager.Instance.TalkText(text);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+        }
+        TextManager.Instance.Assign("");
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -19,7 +19,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
 
     public void Speech(string str, float audioPitch = 1f)
     {
-        StartCoroutine(TalkText(audioPitch, str));
+        StartCoroutine(TalkText(str, audioPitch));
     }
 
     public void Assign(string str)
@@ -32,13 +32,13 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         text.text += str;
     }
 
-    public IEnumerator TalkText(float pitch, string talkingText)
+    public IEnumerator TalkText(string talkingText, float audioPitch = 1f)
     {
         int messageCount = 0;
         Assign("");
 
-        float minPitch = pitch - 0.02f;
-        float maxPitch = pitch + 0f;
+        float minPitch = audioPitch - 0.02f;
+        float maxPitch = audioPitch + 0f;
 
         foreach (var charactor in talkingText)
         {
@@ -52,7 +52,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
                 continue;
             }
 
-            if (pitch > 0.01f && messageCount % 2 == 0)
+            if (audioPitch > 0.01f && messageCount % 2 == 0)
             {
                 SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch));
             }

@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     /// <summary> 移動操作としてタッチ開始したスクリーン座標 </summary>
     private Vector2 _movePointerPosBegin;
+    private float dragHorizontal = 0;
 
     private Vector3 _moveVector;
 
@@ -48,7 +49,11 @@ public class Player : MonoBehaviour
         UpdateMove(_moveVector);
 
         float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        if (horizontal == 0 && dragHorizontal != 0)
+        {
+            horizontal = dragHorizontal;
+        }
+        //float vertical = Input.GetAxisRaw("Vertical");
         _moveVector = new Vector3(0f, 0f, 0f);
 
         if (horizontal < 0)
@@ -93,65 +98,64 @@ public class Player : MonoBehaviour
         //    audioSourceSeWalk.PlayOneShot(soundTalk);
         //}
 
-        // クリックしたオブジェクトまで移動
-        if (Input.GetMouseButtonDown(0)) {
-            if (tween != null && tween.IsPlaying())
-            {
-                // 移動中はスキップ
-                return;
-            }
+        //// クリックしたオブジェクトまで移動
+        //if (Input.GetMouseButtonDown(0)) {
+        //    if (tween != null && tween.IsPlaying())
+        //    {
+        //        // 移動中はスキップ
+        //        return;
+        //    }
 
-            GameObject clickedGameObject = getClickObject();
+        //    GameObject clickedGameObject = getClickObject();
 
-            if (clickedGameObject != null) {
-                // 歩き始めた
-                audioSourceSeWalk.PlayOneShot(soundWalk);
-                nowAnime = walkAnime;
+        //    if (clickedGameObject != null) {
+        //        // 歩き始めた
+        //        audioSourceSeWalk.PlayOneShot(soundWalk);
+        //        nowAnime = walkAnime;
 
-                // 移動を中断
-                transform.DOKill();
+        //        // 移動を中断
+        //        transform.DOKill();
 
-                // 移動処理
-                var vector = clickedGameObject.transform.position - transform.position;
-                var moveDistance = vector.x;
-                var second = Math.Abs(moveDistance / _movePerSecond);
+        //        // 移動処理
+        //        var vector = clickedGameObject.transform.position - transform.position;
+        //        var moveDistance = vector.x;
+        //        var second = Math.Abs(moveDistance / _movePerSecond);
 
-                var artwork = clickedGameObject.GetComponent<Artwork>();
-                var artist_id = artwork.artworkInfo.artist.screen_name;
+        //        var artwork = clickedGameObject.GetComponent<Artwork>();
+        //        var artist_id = artwork.artworkInfo.artist.screen_name;
 
-                Debug.Log($"artist: {artist_id}");
+        //        Debug.Log($"artist: {artist_id}");
 
-                // キャラの向きを変える
-                fitPlayerDirection(vector);
+        //        // キャラの向きを変える
+        //        fitPlayerDirection(vector);
 
-                // 移動
-                tween = transform.DOLocalMove(new Vector3(clickedGameObject.transform.position.x, transform.position.y, 0), second)
-                    .SetEase(Ease.Linear)
-                    .OnComplete(() => {
-                        // 歩き終わった
-                        audioSourceSeWalk.Stop();
-                        nowAnime = standAnime;
+        //        // 移動
+        //        tween = transform.DOLocalMove(new Vector3(clickedGameObject.transform.position.x, transform.position.y, 0), second)
+        //            .SetEase(Ease.Linear)
+        //            .OnComplete(() => {
+        //                // 歩き終わった
+        //                audioSourceSeWalk.Stop();
+        //                nowAnime = standAnime;
 
-                        SceneParameter.LoadScene(artist_id);
-                    });
-            } 
-        }
+        //                SceneParameter.LoadScene(artist_id);
+        //            });
+        //    } 
+        //}
     }
 
-    // 左クリックしたオブジェクトを取得する関数(2D)
-    // https://rikoubou.hatenablog.com/entry/2016/01/29/163518
-    private GameObject getClickObject() {
-        // 左クリックされた場所のオブジェクトを取得
-        if(Input.GetMouseButtonDown(0)) {
-            Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Collider2D collition2d = Physics2D.OverlapPoint(tapPoint);
-            if (collition2d) {
-                return collition2d.transform.gameObject;
-            }
-        }
-
-        return null;
-    }
+    //// 左クリックしたオブジェクトを取得する関数(2D)
+    //// https://rikoubou.hatenablog.com/entry/2016/01/29/163518
+    //private GameObject getClickObject() {
+    //    // 左クリックされた場所のオブジェクトを取得
+    //    if(Input.GetMouseButtonDown(0)) {
+    //        Vector2 tapPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //        Collider2D collition2d = Physics2D.OverlapPoint(tapPoint);
+    //        if (collition2d) {
+    //            return collition2d.transform.gameObject;
+    //        }
+    //    }
+    //    return null;
+    //}
 
     private void FixedUpdate()
     {
@@ -188,12 +192,12 @@ public class Player : MonoBehaviour
         // タッチ開始位置を保持
         _movePointerPosBegin = eventData.position;
 
-        // 歩き始めた
-        audioSourceSeWalk.Play();
+        //// 歩き始めた
+        //audioSourceSeWalk.Play();
         nowAnime = walkAnime;
 
-        // 移動を中断
-        transform.DOKill();
+        //// 移動を中断
+        //transform.DOKill();
     }
 
     /// <summary> ドラッグ操作中（移動用） </summary>
@@ -201,39 +205,48 @@ public class Player : MonoBehaviour
     {
         // タッチ開始位置からのスワイプ量を移動ベクトルにする
         var vector = eventData.position - _movePointerPosBegin;
-        _moveVector = new Vector3(vector.x, 0f, 0f); // 左右だけに移動できる
+        //_moveVector = new Vector3(vector.x, 0f, 0f); // 左右だけに移動できる
 
-        // キャラの向きを変える
-        fitPlayerDirection(vector);
-    }
-
-    private void fitPlayerDirection(Vector2 vector)
-    {
-        if (vector.x > 0)
+        if (vector.x < 0)
         {
-            // 右に移動して左向いているときは反転
-            if (transform.localScale.x < 0)
-            {
-                reversePlayerDirection();
-            }
+            dragHorizontal = -1f;
         }
-        else if (vector.x < 0)
+        else if(0 < vector.x)
         {
-            // 左に移動して右向いているときは反転
-            if (transform.localScale.x > 0)
-            {
-                reversePlayerDirection();
-            }
+            dragHorizontal = 1f;
         }
+
+        //// キャラの向きを変える
+        //fitPlayerDirection(vector);
     }
 
-    private void reversePlayerDirection()
-    {
-        // キャラの向きを反転
-        Vector3 localScale = transform.localScale;
-        localScale.x = localScale.x * -1;
-        transform.localScale = localScale;
-    }
+    //private void fitPlayerDirection(Vector2 vector)
+    //{
+    //    if (vector.x > 0)
+    //    {
+    //        // 右に移動して左向いているときは反転
+    //        if (transform.localScale.x < 0)
+    //        {
+    //            reversePlayerDirection();
+    //        }
+    //    }
+    //    else if (vector.x < 0)
+    //    {
+    //        // 左に移動して右向いているときは反転
+    //        if (transform.localScale.x > 0)
+    //        {
+    //            reversePlayerDirection();
+    //        }
+    //    }
+    //}
+
+    //private void reversePlayerDirection()
+    //{
+    //    // キャラの向きを反転
+    //    Vector3 localScale = transform.localScale;
+    //    localScale.x = localScale.x * -1;
+    //    transform.localScale = localScale;
+    //}
 
     private void UpdateMove(Vector3 vector)
     {
@@ -245,17 +258,12 @@ public class Player : MonoBehaviour
     private void OnEndDragMove(PointerEventData eventData)
     {
         // 移動ベクトルを解消
-        _moveVector = Vector3.zero;
+        //_moveVector = Vector3.zero;
+        dragHorizontal = 0;
 
         // 歩き終わった
-        audioSourceSeWalk.Stop();
+        //audioSourceSeWalk.Stop();
         nowAnime = standAnime;
     }
     #endregion
-
-    // // Update is called once per frame
-    // void Update()
-    // {
-        
-    // }
 }
