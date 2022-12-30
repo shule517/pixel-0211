@@ -29,7 +29,8 @@ public class Scenario社畜 : MonoBehaviour
 
         // 人のしゃべり声 ざわざわ
         BgmManager.Instance.Play("busy-office-1");
-        DOTween.Sequence().Append(DOTween.To(() => 0f, (float x) => BgmManager.Instance.audioSource.volume = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+        BgmManager.Instance.audioSource.volume = 0;
+        BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
 
         if (days == 0)
         {
@@ -39,7 +40,7 @@ public class Scenario社畜 : MonoBehaviour
             yield return new WaitForSeconds(14.5f);
 
             // ざわざわ声をフェードアウト
-            DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
             yield return new WaitForSeconds(14.5f);
 
             // 暗転
@@ -77,7 +78,7 @@ public class Scenario社畜 : MonoBehaviour
             yield return new WaitForSeconds(4.5f);
 
             // ざわざわ声をフェードアウト
-            DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
             yield return new WaitForSeconds(14.5f);
 
             // 暗転
@@ -108,7 +109,7 @@ public class Scenario社畜 : MonoBehaviour
             yield return null;
 
             // ざわざわ声をフェードアウト
-            DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => BgmManager.Instance.audioSource.volume = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
             yield return new WaitForSeconds(14.5f);
 
             // 暗転

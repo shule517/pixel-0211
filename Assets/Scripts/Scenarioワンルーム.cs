@@ -16,7 +16,6 @@ public class Scenarioワンルーム : MonoBehaviour
         days = 0;
     }
 
-    // Start is called before the first frame update
     IEnumerator Start()
     {
         // 最初は真っ暗
