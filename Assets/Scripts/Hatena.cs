@@ -39,6 +39,8 @@ public class Hatena : MonoBehaviour
             yield return TextManager.Instance.TalkText(text);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
         }
         TextManager.Instance.Assign("");
     }
