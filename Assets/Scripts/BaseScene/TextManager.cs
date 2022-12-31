@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -7,6 +9,7 @@ using Random = UnityEngine.Random;
 public class TextManager : SingletonMonoBehaviour<TextManager>
 {
     [SerializeField] public Text text;
+    public List<string> speechTexts;
 
     void Start()
     {
@@ -15,11 +18,32 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         DontDestroyOnLoad(gameObject);
 
         text = GetComponent<Text>();
+        StartCoroutine(xxxx());
+    }
+
+    private IEnumerator xxxx()
+    {
+        //foreach (var text in speechTexts)
+        while(true)
+        {
+            Debug.Log("xxxx - start");
+            Debug.Log("WaitUntil speechTexts.Count:" + speechTexts.Count);
+            yield return new WaitUntil(() => speechTexts.Count > 0);
+
+            var sppechText = speechTexts.First();
+            speechTexts.RemoveAt(0);
+            yield return TalkText(sppechText);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
+        }
     }
 
     public void Speech(string str, float audioPitch = 1f)
     {
-        StartCoroutine(TalkText(str, audioPitch));
+        speechTexts.Add(str);
+        //StartCoroutine(TalkText(str, audioPitch));
     }
 
     public void Assign(string str)

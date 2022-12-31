@@ -8,11 +8,17 @@ public class Scenario社畜 : MonoBehaviour
 {
     public Light2D light2D;
     static int days = 0;
+    public int startDays = 0; // インスペクタで開始日を設定できるように
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void Init()
     {
         days = 0;
+    }
+
+    void Awake()
+    {
+        days = startDays;
     }
 
     // Start is called before the first frame update
@@ -92,19 +98,19 @@ public class Scenario社畜 : MonoBehaviour
             // 3日目
             yield return new WaitForSeconds(4.5f);
 
-            TextManager.Instance.Speech("えっ… (A)", 0.8f);
+            TextManager.Instance.Speech("えっ…", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
 
-            TextManager.Instance.Speech("よるちゃん やめちゃうんですか… (A)", 0.8f);
+            TextManager.Instance.Speech("よるちゃん やめちゃうんですか…", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
 
-            TextManager.Instance.Speech("そうなんですね。 (A)", 0.8f);
+            TextManager.Instance.Speech("…そうなんですね", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
 
-            TextManager.Instance.Speech("わかりました。 (A)", 0.8f);
+            TextManager.Instance.Speech("…わかりました", 0.8f);
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
             yield return null;
 
@@ -115,9 +121,29 @@ public class Scenario社畜 : MonoBehaviour
             // 暗転
             yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
+            yield return new WaitForSeconds(2.5f);
+
             // ３回目だけ 帰る意思 分岐
-            TextManager.Instance.Speech("帰ろう。 (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            var texts = new string[] { "きょうも しごとが おわらない。",
+            "はぁ…",
+            "… … …",
+            "やりたいことって こんなこと だっけ…",
+            "みんな おかねの はなし ばかり…",
+            "… … …",
+            "じぶんは いいもの つくりたいだけなのに…",
+            "… … …",
+            "… … …",
+            "もう、しゅうでん の じかんだ",
+            "かえらなきゃ。" };
+
+            foreach (var sppechText in texts)
+            {
+                TextManager.Instance.Speech(sppechText);
+                yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+                yield return null;
+                TextManager.Instance.Assign("");
+                yield return new WaitForSeconds(0.8f);
+            }
             yield return null;
             TextManager.Instance.Assign("");
 

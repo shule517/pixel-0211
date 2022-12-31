@@ -643,3 +643,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   light2D: {fileID: 1424152592}
+  startDays: 2
