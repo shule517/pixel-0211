@@ -486,7 +486,7 @@ GameObject:
   - component: {fileID: 457499309}
   - component: {fileID: 457499310}
   m_Layer: 0
-  m_Name: player
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1961,3 +1961,4 @@ MonoBehaviour:
   player: {fileID: 457499304}
   minX: -58
   maxX: -20
+  light2D: {fileID: 1823925666}

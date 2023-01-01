@@ -166,11 +166,13 @@ public class Player : MonoBehaviour
 
             if (nowAnime == walkAnime)
             {
-                BgmManager.Instance.Play("se_walk1");
+                audioSourceSeWalk.Play();
+                //BgmManager.Instance.Play("se_walk1");
             }
             else
             {
-                BgmManager.Instance.Stop();
+                audioSourceSeWalk.Stop();
+                //BgmManager.Instance.Stop();
             }
         }
     }
