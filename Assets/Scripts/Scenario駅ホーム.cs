@@ -23,11 +23,11 @@ public class Scenario駅ホーム : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x < minX)
-        {
-            SceneManager.LoadScene("踏切Scene");
-        }
-        else if (maxX < player.transform.position.x)
+        //if (player.transform.position.x < minX)
+        //{
+        //    SceneManager.LoadScene("踏切Scene");
+        //}
+        if (maxX < player.transform.position.x)
         {
             SceneManager.LoadScene("海の駅Scene");
         }

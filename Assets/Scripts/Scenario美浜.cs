@@ -15,11 +15,11 @@ public class Scenario美浜 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x  < minX)
-        {
-            SceneManager.LoadScene("駅ホームScene");
-        }
-        else if (maxX < player.transform.position.x)
+        //if (player.transform.position.x  < minX)
+        //{
+        //    SceneManager.LoadScene("駅ホームScene");
+        //}
+        if (maxX < player.transform.position.x)
         {
             SceneManager.LoadScene("夜道Scene");
         }

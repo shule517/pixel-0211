@@ -15,11 +15,11 @@ public class Scenarioよじま : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x < minX)
-        {
-            SceneManager.LoadScene("夜道Scene");
-        }
-        else if (maxX < player.transform.position.x)
+        //if (player.transform.position.x < minX)
+        //{
+        //    SceneManager.LoadScene("夜道Scene");
+        //}
+        if (maxX < player.transform.position.x)
         {
             SceneManager.LoadScene("踏切Scene");
         }

@@ -19,11 +19,11 @@ public class Scenario踏切 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.transform.position.x < minX)
-        {
-            SceneManager.LoadScene("よじまScene");
-        }
-        else if (maxX < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
+        //if (player.transform.position.x < minX)
+        //{
+        //    SceneManager.LoadScene("よじまScene");
+        //}
+        if (maxX < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
         {
             SceneManager.LoadScene("駅ホームScene");
         }
