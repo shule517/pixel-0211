@@ -25,7 +25,7 @@ public class Hatena : MonoBehaviour
     {
         if (spriteRender.enabled && Input.GetButtonDown("決定"))
         {
-            if (string.IsNullOrEmpty(TextManager.Instance.text.text))
+            if (!TextManager.Instance.IsTalking)
             {
                 StartCoroutine(Speech());
             }

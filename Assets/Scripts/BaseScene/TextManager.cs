@@ -6,10 +6,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
+public class Speech
+{
+    public string[] texts;
+    public float audioPitch;
+}
+
 public class TextManager : SingletonMonoBehaviour<TextManager>
 {
     [SerializeField] public Text text;
-    public List<string> speechTexts;
+    public List<Speech> speechTexts = new List<Speech>();
+    public bool IsTalking = false;
 
     void Start()
     {
@@ -28,21 +35,27 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         {
             Debug.Log("xxxx - start");
             Debug.Log("WaitUntil speechTexts.Count:" + speechTexts.Count);
+            IsTalking = false;
             yield return new WaitUntil(() => speechTexts.Count > 0);
+            IsTalking = true;
 
-            var sppechText = speechTexts.First();
+            var speech = speechTexts.First();
             speechTexts.RemoveAt(0);
-            yield return TalkText(sppechText);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.8f);
+
+            foreach (var text in speech.texts)
+            {
+                yield return TalkText(text, speech.audioPitch);
+                yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+                yield return null;
+                TextManager.Instance.Assign("");
+                yield return new WaitForSeconds(0.8f);
+            }
         }
     }
 
     public void Speech(string str, float audioPitch = 1f)
     {
-        speechTexts.Add(str);
+        speechTexts.Add(new Speech() { texts = new string[] { str }, audioPitch = audioPitch });
         //StartCoroutine(TalkText(str, audioPitch));
     }
 
