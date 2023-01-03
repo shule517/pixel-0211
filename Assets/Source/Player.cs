@@ -27,7 +27,6 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     Tween tween = null;
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSourceSeWalk = GetComponent<AudioSource>();
@@ -38,9 +37,12 @@ public class Player : MonoBehaviour
     /// <summary> 起動時 </summary>
     private void Awake()
     {
-        _moveController.OnBeginDragEvent += OnBeginDragMove;
-        _moveController.OnDragEvent += OnDragMove;
-        _moveController.OnEndDragEvent += OnEndDragMove;
+        if (_moveController)
+        {
+            _moveController.OnBeginDragEvent += OnBeginDragMove;
+            _moveController.OnDragEvent += OnDragMove;
+            _moveController.OnEndDragEvent += OnEndDragMove;
+        }
     }
 
     /// <summary> 更新処理 </summary>

@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 457499304}
   minX: -40
-  maxX: 0
+  maxX: -5
   doorLeft: {fileID: 45702669}
   doorRight: {fileID: 1988052366}
 --- !u!1001 &1323379457
@@ -1530,7 +1530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834402, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.947626
+      value: -19.86
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834402, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1570,7 +1570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[0]
@@ -1578,11 +1578,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[1]
-      value: "\u5E30\u3063\u305F\u3089\u3001\u660E\u65E5\u304C\u304F\u308B"
+      value: "\u5E30\u3063\u305F\u3089\u3001\u660E\u65E5\u304C\u304D\u3061\u3083\u3046\u2026"
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[2]
-      value: "\u307E\u305F\u4ED5\u4E8B\u304C\u306F\u3058\u307E\u308B\u2026"
+      value: "\u307E\u305F\u671D\u304C\u6765\u3066 \u4ED5\u4E8B\u304C\u306F\u3058\u307E\u308B\u2026"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
+      propertyPath: speechTexts.Array.data[3]
+      value: "\u304B\u3048\u308A\u305F\u304F\u2026   \u306A\u3044\u2026"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a87d205b62de1459885fd01bee586cb5, type: 3}

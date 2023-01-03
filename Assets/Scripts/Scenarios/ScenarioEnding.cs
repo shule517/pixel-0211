@@ -8,24 +8,39 @@ using UnityEngine.SceneManagement;
 
 public class ScenarioEnding : MonoBehaviour
 {
+    public GameObject player;
     public List<GameObject> gameObjects;
     public GameObject museum;
     public Light2D light2D;
     public AudioSource audioSource;
 
+    private bool isEndingScenario = false;
+
     IEnumerator Start()
     {
-        // 最初は真っ暗
-        light2D.intensity = 0;
+        light2D.intensity = 0; // 最初は真っ暗
+
+        // 背景を非表示にする
         gameObjects.ForEach((gameObject) => gameObject.SetActive(false));
+
+        // 美術館を非表示にする
+        museum.SetActive(false);
+        player.SetActive(false);
+
+        // 最初の背景だけ表示する
         gameObjects.First().SetActive(true);
 
         yield return new WaitForSeconds(1.5f); // BaseScene読み込み待ち
+
+        //BgmManager.Instance.Play("audiostock_2075_sample");
+        //BgmManager.Instance.Play("audiostock_822608_sample");
+        //BgmManager.Instance.Play("audiostock_1224447_sample");
+
+        //BgmManager.Instance.Play("audiostock_1266016_sample");
         BgmManager.Instance.Play("audiostock_892577_sample");
 
-        yield return new WaitForSeconds(15f);
-        yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 0.1f).SetEase(Ease.InQuad));
-
+        yield return new WaitForSeconds(14.9f);
+        yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 0.1f).SetEase(Ease.InQuad)).WaitForCompletion();
         foreach (var gameObject in gameObjects)
         {
             gameObject.SetActive(true);
@@ -40,16 +55,25 @@ public class ScenarioEnding : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+        // プレイヤーを表示
+        player.SetActive(true);
         // 美術館の入り口を表示する
         museum.SetActive(true);
-        yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad));
+        yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+    }
 
-        yield return new WaitForSeconds(5.5f);
+    IEnumerator endingScenario()
+    {
+        isEndingScenario = true;
+        Debug.Log("museumScenario");
 
         // 暗くする
-        yield return DOTween.Sequence().Append(DOTween.To(() => 1, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+        light2D.intensity = 0;
+        player.SetActive(false);
 
         yield return new WaitForSeconds(1.5f);
+        SeManager.Instance.Play("鉄の扉を開ける");
+        yield return new WaitForSeconds(5f);
 
         TextManager.Instance.Speech("プレイしていただき ありがとうございました！");
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -71,7 +95,7 @@ public class ScenarioEnding : MonoBehaviour
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
-        TextManager.Instance.Speech("良い作品になれるように\nこれから がんばっていきます！       はる");
+        TextManager.Instance.Speech("良い作品になるように\nこれから がんばっていきます！       はる");
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
@@ -79,9 +103,15 @@ public class ScenarioEnding : MonoBehaviour
 
         // タイトルに戻る
         SceneManager.LoadScene("TitleScene");
+        yield return null;
     }
 
     void Update()
     {
+        if (isEndingScenario == false && - 29f < player.transform.position.x)
+        {
+            // 美術館＆エンディング
+            StartCoroutine(endingScenario());
+        }
     }
 }

@@ -29,7 +29,7 @@ public class Scenario駅ホーム : MonoBehaviour
         //}
         if (maxX < player.transform.position.x)
         {
-            SceneManager.LoadScene("海の駅Scene");
+            SceneManager.LoadScene("EndingScene");
         }
     }
 }
