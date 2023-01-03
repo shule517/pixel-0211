@@ -81,14 +81,15 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         {
             var str = charactor.ToString();
             Append(str);
-            messageCount++;
 
             // 空文字は音を鳴らさない
             if (String.IsNullOrEmpty(str.Trim()))
             {
+                yield return new WaitForSeconds(0.08f);
                 continue;
             }
 
+            messageCount++;
             if (audioPitch > 0.01f && messageCount % 2 == 0)
             {
                 SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch));
