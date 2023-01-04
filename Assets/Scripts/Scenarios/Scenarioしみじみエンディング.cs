@@ -5,10 +5,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class Scenarioしみじみエンディング : MonoBehaviour
 {
     public GameObject endroll;
+    public UnityEngine.UI.Text text;
     public GameObject player;
     public List<GameObject> gameObjects;
     public GameObject museum;
@@ -39,6 +42,37 @@ public class Scenarioしみじみエンディング : MonoBehaviour
         //endroll.transform.DOLocalMoveX(-100f, 150f);
         //endroll.transform.DOLocalMoveY(80f, 230f);
 
+        text.text = @"
+- 企画 -
+
+路地の浦
+
+
+
+
+
+
+- 制作ツール -
+
+WOLF RPGエディター
+（ SmokingWOLF 様）
+
+
+
+
+
+素材提供
+
+
+
+
+- BGM -
+
+音の園 様
+http://oto-no-sono.com
+";
+        //text.transform.DOLocalMoveX(-447f, 10.68f);
+
         //yield return new WaitForSeconds(14.9f);
         foreach (var gameObject in gameObjects)
         {
@@ -47,7 +81,6 @@ public class Scenarioしみじみエンディング : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        //BgmManager.Instance.audioSource.volume = 0;
         yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
 
         // 無音＆暗くする
@@ -59,6 +92,10 @@ public class Scenarioしみじみエンディング : MonoBehaviour
         player.SetActive(true);
         // 美術館の入り口を表示する
         museum.SetActive(true);
+
+        BgmManager.Instance.Play("audiostock_2075_sample");
+        yield return BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
     }
 
@@ -71,6 +108,7 @@ public class Scenarioしみじみエンディング : MonoBehaviour
         light2D.intensity = 0;
         player.SetActive(false);
 
+        yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 0.1f).SetEase(Ease.InQuad).WaitForCompletion();
         yield return new WaitForSeconds(1.5f);
         SeManager.Instance.Play("鉄の扉を開ける");
         yield return new WaitForSeconds(5f);
@@ -108,6 +146,10 @@ public class Scenarioしみじみエンディング : MonoBehaviour
 
     void Update()
     {
+        // エンドロールのスクロール
+        var textScrollSpeed = 35f;
+        text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
+
         if (isEndingScenario == false && - 29f < player.transform.position.x)
         {
             // 美術館＆エンディング

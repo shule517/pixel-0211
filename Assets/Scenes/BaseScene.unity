@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 1235014544}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Text
+  m_TagString: BaseSceneText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -432,6 +432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1235014541}
+  IsTalking: 0
 --- !u!1 &1281556540
 GameObject:
   m_ObjectHideFlags: 0

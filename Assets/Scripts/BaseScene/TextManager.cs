@@ -24,7 +24,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         DontDestroyOnLoad(transform.parent.gameObject);
         DontDestroyOnLoad(gameObject);
 
-        text = GetComponent<Text>();
+        text = GameObject.FindWithTag("BaseSceneText").GetComponent<Text>();
         StartCoroutine(xxxx());
     }
 
