@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class Scenarioしみじみエンディング : MonoBehaviour
 {
+    public GameObject endroll;
     public GameObject player;
     public List<GameObject> gameObjects;
     public GameObject museum;
@@ -34,21 +35,25 @@ public class Scenarioしみじみエンディング : MonoBehaviour
 
         BgmManager.Instance.Play("audiostock_822608_sample");
 
-        //yield return new WaitForSeconds(14.9f);
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 0.1f).SetEase(Ease.InQuad)).WaitForCompletion();
+        //endroll.transform.DOLocalMoveX(-100f, 150f);
+        //endroll.transform.DOLocalMoveY(80f, 230f);
+
+        //yield return new WaitForSeconds(14.9f);
         foreach (var gameObject in gameObjects)
         {
             gameObject.SetActive(true);
-            yield return new WaitForSeconds(7.5f); // 15s 22.5s 30s 37.5s 46s
+            yield return new WaitForSeconds(10.68f); // 15s 22.5s 30s 37.5s 46s
             gameObject.SetActive(false);
         }
 
+        //BgmManager.Instance.audioSource.volume = 0;
+        yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+
         // 無音＆暗くする
         light2D.intensity = 0;
-        yield return new WaitForSeconds(2f);
         BgmManager.Instance.Stop();
-
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
 
         // プレイヤーを表示
         player.SetActive(true);

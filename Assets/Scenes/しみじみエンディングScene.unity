@@ -373,7 +373,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 324576283}
-  m_Father: {fileID: 359859708}
+  m_Father: {fileID: 1865671925}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &359859707
@@ -404,14 +404,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1284521170}
-  - {fileID: 985124548}
-  - {fileID: 1198986801}
-  - {fileID: 340109260}
+  - {fileID: 1865671925}
   - {fileID: 1441074001}
   - {fileID: 975132784}
-  - {fileID: 1992899171}
   - {fileID: 1100924641}
+  - {fileID: 1992899171}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -779,7 +776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7073196652239808158, guid: 25594dd9fbc2347e18127e43279eaf1d, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7073196652239808158, guid: 25594dd9fbc2347e18127e43279eaf1d, type: 3}
       propertyPath: m_LocalScale.x
@@ -914,7 +911,7 @@ Transform:
   m_Children:
   - {fileID: 772814049}
   m_Father: {fileID: 359859708}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &985124546
 GameObject:
@@ -998,7 +995,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1662414529}
-  m_Father: {fileID: 359859708}
+  m_Father: {fileID: 1865671925}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1100924639
@@ -1083,7 +1080,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 359859708}
-  m_RootOrder: 7
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1198986800
 GameObject:
@@ -1115,8 +1112,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 60870497}
-  m_Father: {fileID: 359859708}
-  m_RootOrder: 2
+  m_Father: {fileID: 1865671925}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1198986802
 SpriteRenderer:
@@ -1252,8 +1249,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1584943525}
-  m_Father: {fileID: 359859708}
-  m_RootOrder: 0
+  m_Father: {fileID: 1865671925}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1424152589
 GameObject:
@@ -1497,6 +1494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d793b7a712c4774a87e83e0d301ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endroll: {fileID: 0}
   player: {fileID: 1992899165}
   gameObjects:
   - {fileID: 1198986800}
@@ -1537,7 +1535,7 @@ Transform:
   m_Children:
   - {fileID: 1839857363}
   m_Father: {fileID: 359859708}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1441074002
 SpriteRenderer:
@@ -1841,6 +1839,41 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1441074001}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1865671924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1865671925}
+  m_Layer: 0
+  m_Name: "\u30A8\u30F3\u30C9\u30ED\u30FC\u30EB"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1865671925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1865671924}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1198986801}
+  - {fileID: 985124548}
+  - {fileID: 1284521170}
+  - {fileID: 340109260}
+  m_Father: {fileID: 359859708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1992899165 stripped
