@@ -81,7 +81,8 @@ http://oto-no-sono.com
             gameObject.SetActive(false);
         }
 
-        yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+        yield return new WaitForSeconds(3f);
+        yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).WaitForCompletion();
 
         // 無音＆暗くする
         light2D.intensity = 0;
@@ -114,6 +115,10 @@ http://oto-no-sono.com
         yield return new WaitForSeconds(5f);
 
         TextManager.Instance.Speech("プレイしていただき ありがとうございました！");
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        yield return null;
+
+        TextManager.Instance.Speech("体験版はここまでです。");
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
