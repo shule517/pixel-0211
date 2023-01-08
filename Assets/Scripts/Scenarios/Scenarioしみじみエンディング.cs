@@ -34,9 +34,9 @@ public class Scenarioしみじみエンディング : MonoBehaviour
         // 最初の背景だけ表示する
         gameObjects.First().SetActive(true);
 
-        yield return new WaitForSeconds(1.5f); // BaseScene読み込み待ち
-
-        BgmManager.Instance.Play("audiostock_822608_sample");
+        // TODO: ↓お試し中
+        // yield return new WaitForSeconds(1.5f); // BaseScene読み込み待ち
+        //BgmManager.Instance.Play("audiostock_822608_sample");
 
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 0.1f).SetEase(Ease.InQuad)).WaitForCompletion();
         //endroll.transform.DOLocalMoveX(-100f, 150f);
@@ -151,7 +151,7 @@ http://oto-no-sono.com
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
-        TextManager.Instance.Speech("ここが良かった・悪かった・こんなこと思ったなど──");
+        TextManager.Instance.Speech("ここが良かった、悪かった、こんなこと思ったなど──");
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
