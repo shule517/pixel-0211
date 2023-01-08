@@ -42,9 +42,7 @@ public class Scenarioしみじみエンディング : MonoBehaviour
         //endroll.transform.DOLocalMoveX(-100f, 150f);
         //endroll.transform.DOLocalMoveY(80f, 230f);
 
-        text.text = @"
-- 企画 -
-
+        text.text = @"- 企画 -
 路地の浦
 
 
@@ -71,6 +69,21 @@ WOLF RPGエディター
 音の園 様
 http://oto-no-sono.com
 ";
+
+// - SE -
+// ringtones.miyanova.com
+
+// 効果音ラボ
+
+// 効果音辞典
+
+
+// - Font -
+// k8x12
+// https://littlelimit.net/
+
+// LanaPixel font © 2020-2022 eishiya
+
         //text.transform.DOLocalMoveX(-447f, 10.68f);
 
         //yield return new WaitForSeconds(14.9f);
@@ -126,7 +139,7 @@ http://oto-no-sono.com
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
-        TextManager.Instance.Speech("同じように つらい思いをしている人が、");
+        TextManager.Instance.Speech("同じように つらい思いをしている人が──");
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
@@ -135,6 +148,14 @@ http://oto-no-sono.com
         yield return null;
 
         TextManager.Instance.Speech("だれかに ひびいてくれたら うれしいです。");
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        yield return null;
+
+        TextManager.Instance.Speech("ここが良かった・悪かった・こんなこと思ったなど──");
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        yield return null;
+
+        TextManager.Instance.Speech("どんなことでも良いので\nプレイの感想を教えていただけると嬉しいです。");
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;
 
