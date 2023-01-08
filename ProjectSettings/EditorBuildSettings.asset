@@ -33,6 +33,9 @@ EditorBuildSettings:
     path: "Assets/Scenes/\u591C\u9053Scene.unity"
     guid: f38101cc38e1b4047b6a2d2faf84bb55
   - enabled: 1
+    path: "Assets/Scenes/\u3057\u307F\u3058\u307F\u30A8\u30F3\u30C7\u30A3\u30F3\u30B0Scene.unity"
+    guid: a3c1e43aa09cf4125a0d88039a94368b
+  - enabled: 1
     path: Assets/Scenes/EndingScene.unity
     guid: 4204b5c406f3c407d8bb89eec1fc5c98
   - enabled: 1
