@@ -92,7 +92,7 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
             messageCount++;
             if (audioPitch > 0.01f && messageCount % 2 == 0)
             {
-                SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch));
+                SeManager.Instance.Play("voice1", Random.Range(minPitch, maxPitch), 2);
             }
 
             yield return new WaitForSeconds(0.04f);

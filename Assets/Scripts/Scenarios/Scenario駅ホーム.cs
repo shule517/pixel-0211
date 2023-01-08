@@ -16,10 +16,12 @@ public class Scenario駅ホーム : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitForSeconds(2f); // BaseScene読み込み待ち
-        //yield return new WaitForSeconds(11f); // BaseScene読み込み待ち
 
         BgmManager.Instance.Play("audiostock_electronica");
 
+        yield return new WaitForSeconds(2f);
+
+        // TODO: 電車のドアの前まで行ったら ドアが開くようにしたい
         SeManager.Instance.Play("電車のドアが開く1");
         var sequence_left = DOTween.Sequence();
         sequence_left.Append(doorLeft.transform.DOLocalMove(new Vector3(0.135f, 0f, 0f), 1.3f).SetEase(Ease.Linear));

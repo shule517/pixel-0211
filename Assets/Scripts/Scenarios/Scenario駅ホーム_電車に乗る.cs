@@ -30,6 +30,9 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
 
     IEnumerator TakeTrain()
     {
+        // 今のBGMをフェードアウト
+        BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).WaitForCompletion();
+
         // はるが電車に乗る
         player.transform.DOMove(new Vector3(player.transform.position.x, -1.3f, player.transform.position.z), 1f).OnComplete(() => { player.GetComponent<Renderer>().sortingOrder = 8; });
         player.transform.parent = train.transform;
@@ -51,29 +54,37 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        TextManager.Instance.Speech("帰るのが こわい…");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+        // セリフ
+        Speech();
 
-        TextManager.Instance.Speech("帰ったら、明日がきちゃう…");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+        //TextManager.Instance.Speech("帰るのが こわい…");
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        //yield return null;
 
-        TextManager.Instance.Speech("また朝が来て 仕事がはじまる…");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+        //TextManager.Instance.Speech("帰ったら、明日がきちゃう…");
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        //yield return null;
 
-        TextManager.Instance.Speech("かえりたく…   ない…");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+        //TextManager.Instance.Speech("また朝が来て 仕事がはじまる…");
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        //yield return null;
 
-        // 今のBGMをフェードアウト
-        yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).WaitForCompletion();
+        //TextManager.Instance.Speech("かえりたく…   ない…");
+        //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        //yield return null;
+
+        // 電車の発車音をフェードアウト
+        SeManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).OnComplete(() => {
+            SeManager.Instance.Stop();
+            SeManager.Instance.audioSource.volume = 1f;
+        });
+
         // エンディングを流す
         BgmManager.Instance.Play("audiostock_822608_sample");
+        BgmManager.Instance.audioSource.volume = 0;
         yield return BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f).WaitForCompletion();
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(21f - 7.5f);
 
         SceneManager.LoadScene("しみじみエンディングScene");
 

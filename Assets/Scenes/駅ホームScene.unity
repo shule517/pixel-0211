@@ -2559,6 +2559,7 @@ MonoBehaviour:
   doorLeft: {fileID: 1988052366}
   doorRight: {fileID: 45702669}
   player: {fileID: 457499304}
+  IsTalking: 0
   speechTexts:
   - "\u5E30\u308B\u306E\u304C \u3053\u308F\u3044\u2026"
   - "\u5E30\u3063\u305F\u3089\u3001\u660E\u65E5\u304C\u304D\u3061\u3083\u3046\u2026"
