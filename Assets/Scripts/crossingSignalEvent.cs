@@ -7,6 +7,7 @@ public class crossingSignalEvent : MonoBehaviour
 {
     public GameObject train;
     public AudioSource crossingSignalAudioSource;
+    bool isEventStarted = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,11 @@ public class crossingSignalEvent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("OnTriggerEnter2D");
+
+        // イベントは一回しか実行しない
+        if (isEventStarted) { return; }
+
+        isEventStarted = true;
         var position = train.transform.position;
         train.transform.DOMove(new Vector3(25f, position.y, position.z), 20f).SetEase(Ease.OutQuad).SetDelay(3f);
 
