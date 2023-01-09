@@ -78,7 +78,7 @@ public class Scenarioワンルーム : MonoBehaviour
             TextManager.Instance.Assign("");
             yield return new WaitForSeconds(0.8f);
 
-            TextManager.Instance.Speech("もう時間だ 行かなきゃ！ (A)", 0.8f);
+            TextManager.Instance.Speech("もう時間だ 行かなきゃ (A)", 0.8f);
         }
         else if (days == 1)
         {

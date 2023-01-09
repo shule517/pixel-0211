@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 
 public class Scenario社畜 : MonoBehaviour
 {
+    public GameObject hitokage;
     public Light2D light2D;
     static int days = 0;
 
@@ -18,6 +19,8 @@ public class Scenario社畜 : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 0f);
+
         StartCoroutine(TypingBgm());
 
         // 暗転から復帰
@@ -31,6 +34,7 @@ public class Scenario社畜 : MonoBehaviour
         BgmManager.Instance.Play("busy-office-1");
         BgmManager.Instance.audioSource.volume = 0;
         BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+        hitokage.GetComponent<SpriteRenderer>().DOFade(1f, 6f);
 
         if (days == 0)
         {
@@ -41,6 +45,7 @@ public class Scenario社畜 : MonoBehaviour
 
             // ざわざわ声をフェードアウト
             BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+            hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
             yield return new WaitForSeconds(14.5f);
 
             // 暗転
@@ -79,6 +84,7 @@ public class Scenario社畜 : MonoBehaviour
 
             // ざわざわ声をフェードアウト
             BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+            hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
             yield return new WaitForSeconds(14.5f);
 
             // 暗転
@@ -110,6 +116,7 @@ public class Scenario社畜 : MonoBehaviour
 
             // ざわざわ声をフェードアウト
             BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+            hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
             yield return new WaitForSeconds(14.5f);
 
             // 暗転
