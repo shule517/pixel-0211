@@ -22,6 +22,11 @@ public class ScenarioTitle : MonoBehaviour
         moveSequence.Append(DOTween.To(() => maxIntensity, (float x) => light2D.intensity = x, minIntensity, interval).SetEase(Ease.InOutQuad));
         moveSequence.SetDelay(0.5f);
         moveSequence.SetLoops(-1);
+
+        TextManager.Instance.Assign(@"
+
+
+           Aボタンを 押してね");
     }
 
     // Update is called once per frame
@@ -29,7 +34,8 @@ public class ScenarioTitle : MonoBehaviour
     {
         if (Input.GetButtonDown("決定"))
         {
-            SceneManager.LoadScene("ワンルームScene");
+            TextManager.Instance.Assign("");
+            SceneManager.LoadScene("ゲームたのしいScene");
         }
     }
 }

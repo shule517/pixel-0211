@@ -23,19 +23,22 @@ public class Scenarioワンルーム : MonoBehaviour
 
         yield return new WaitForSeconds(1.5f);
 
-        BgmManager.Instance.Play("バイブ音＃01");
-        TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(2.5f);
+        if (days != 0)
+        {
+            BgmManager.Instance.Play("バイブ音＃01");
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(2.5f);
 
-        TextManager.Instance.Speech("─ アラームを止める ─ (A)", 0f);
+            TextManager.Instance.Speech("─ アラームを止める ─ (A)", 0f);
 
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
 
-        // アラームを止める
-        BgmManager.Instance.Stop();
-        audioSource.Pause();
-        TextManager.Instance.Assign("");
+            // アラームを止める
+            BgmManager.Instance.Stop();
+            audioSource.Pause();
+            TextManager.Instance.Assign("");
+        }
 
         // 目をあけた
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
@@ -45,6 +48,41 @@ public class Scenarioワンルーム : MonoBehaviour
         if (days == 0)
         {
             // 初日
+            TextManager.Instance.Speech("… … … (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
+
+            TextManager.Instance.Speech("夢か… (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
+
+            TextManager.Instance.Speech("そういえば あの頃は── (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
+
+            TextManager.Instance.Speech("ゲームつくりたかったんだよなぁ… (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
+
+            TextManager.Instance.Speech("やばっ── (A)", 0.8f);
+            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            yield return null;
+            TextManager.Instance.Assign("");
+            yield return new WaitForSeconds(0.8f);
+
+            TextManager.Instance.Speech("もう時間だ 行かなきゃ！ (A)", 0.8f);
+        }
+        else if (days == 1)
+        {
+            // 2日目
             TextManager.Instance.Speech("もう朝だ… (A)", 0.8f);
 
             yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -61,15 +99,10 @@ public class Scenarioワンルーム : MonoBehaviour
 
             TextManager.Instance.Speech("でも、もう行かなきゃ (A)", 0.8f);
         }
-        else if (days == 1)
-        {
-            // 2日目
-            TextManager.Instance.Speech("… (A)", 0.8f);
-        }
         else
         {
             // 3日目
-            TextManager.Instance.Speech("… (A)", 0.8f);
+            TextManager.Instance.Speech("… … … (A)", 0.8f);
         }
 
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
