@@ -8,17 +8,11 @@ public class Scenario社畜 : MonoBehaviour
 {
     public Light2D light2D;
     static int days = 0;
-    public int startDays = 0; // インスペクタで開始日を設定できるように
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void Init()
     {
         days = 0;
-    }
-
-    void Awake()
-    {
-        days = startDays;
     }
 
     // Start is called before the first frame update
