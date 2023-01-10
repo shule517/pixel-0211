@@ -48,37 +48,12 @@ public class Scenarioワンルーム : MonoBehaviour
         if (days == 0)
         {
             // 初日
-            TextManager.Instance.Speech("… … … (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.8f);
-
-            TextManager.Instance.Speech("夢か… (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.8f);
-
-            TextManager.Instance.Speech("そういえば あの頃は── (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.8f);
-
-            TextManager.Instance.Speech("ゲームつくりたかったんだよなぁ… (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.8f);
-
-            TextManager.Instance.Speech("やばっ── (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-            TextManager.Instance.Assign("");
-            yield return new WaitForSeconds(0.8f);
-
-            TextManager.Instance.Speech("もう時間だ 行かなきゃ (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("… … … (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("夢か… (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("そういえば あの頃は── (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("ゲームつくりたかったんだよなぁ… (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("… … !! (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("もう時間だ 行かなきゃ (A)", 0.8f);
         }
         else if (days == 1)
         {

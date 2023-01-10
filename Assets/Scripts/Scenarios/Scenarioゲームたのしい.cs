@@ -18,42 +18,14 @@ public class Scenarioゲームたのしい : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        TextManager.Instance.Speech("めちゃくちゃ いいゲームだった…！ (A)", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(0.8f);
+        yield return TextManager.Instance.Speech2("めちゃくちゃ いいゲームだった…！ (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("ドット絵も、音楽も、ストーリーも── (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("すべてが つながっていて── (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("最高な ふんいきだった！！ (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("人の心を動かすようなゲーム── (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("いつか 自分も 作れたらなぁ… … … (A)", 0.8f);
 
-        TextManager.Instance.Speech("ドット絵も、音楽も、ストーリーも── (A)", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(0.8f);
-
-        TextManager.Instance.Speech("すべてが つながっていて── (A)", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(0.8f);
-
-        TextManager.Instance.Speech("最高な ふんいきだった！！ (A)", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(0.8f);
-
-        TextManager.Instance.Speech("人の心を動かすようなゲーム── (A)", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(0.8f);
-
-        TextManager.Instance.Speech("いつか 自分も 作れたらなぁ… … … (A)", 0.8f);
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-        TextManager.Instance.Assign("");
-
-        yield return new WaitForSeconds(2.8f);
+        yield return new WaitForSeconds(2f);
 
         BgmManager.Instance.Play("バイブ音＃01");
         TextManager.Instance.Assign("");

@@ -53,6 +53,18 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         }
     }
 
+    public IEnumerator Speech2(string str, float audioPitch = 1f)
+    {
+        IsTalking = true;
+
+        yield return TalkText(str, audioPitch);
+        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+        yield return null;
+        TextManager.Instance.Assign("");
+        yield return new WaitForSeconds(0.8f);
+        IsTalking = false;
+    }
+
     public void Speech(string str, float audioPitch = 1f)
     {
         speechTexts.Add(new Speech() { texts = new string[] { str }, audioPitch = audioPitch });
