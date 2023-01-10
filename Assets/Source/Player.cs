@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using System;
 
-public class Player : MonoBehaviour
+public class Player : SingletonMonoBehaviour<Player>
 {
     /// <summary> 移動操作を受け付けるタッチエリア </summary>
     [SerializeField]
@@ -27,6 +27,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     Tween tween = null;
 
+    // キャラクターが操作可能か
+    public bool IsPlayable { get; set; } = true;
+
     void Start()
     {
         audioSourceSeWalk = GetComponent<AudioSource>();
@@ -48,6 +51,8 @@ public class Player : MonoBehaviour
     /// <summary> 更新処理 </summary>
     private void Update()
     {
+        if (!IsPlayable) { return; }
+
         UpdateMove(_moveVector);
 
         float horizontal = Input.GetAxisRaw("Horizontal");

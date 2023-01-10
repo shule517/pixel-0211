@@ -19,6 +19,7 @@ public class Scenarioしみじみエンディング : MonoBehaviour
     public AudioSource audioSource;
 
     private bool isEndingScenario = false;
+    private bool isDisplayedMuseum = false;
 
     IEnumerator Start()
     {
@@ -111,6 +112,7 @@ http://oto-no-sono.com
         yield return BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
 
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+        isDisplayedMuseum = true;
     }
 
     IEnumerator endingScenario()
@@ -176,7 +178,7 @@ http://oto-no-sono.com
         var textScrollSpeed = 35f;
         text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
 
-        if (isEndingScenario == false && - 29f < player.transform.position.x)
+        if (isDisplayedMuseum && isEndingScenario == false && - 29f < player.transform.position.x)
         {
             // 美術館＆エンディング
             StartCoroutine(endingScenario());
