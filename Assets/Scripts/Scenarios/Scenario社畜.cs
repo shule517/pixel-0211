@@ -61,9 +61,9 @@ public class Scenario社畜 : MonoBehaviour
 
             yield return TextManager.Instance.Speech2("えっ… (A)", 0.8f);
             yield return TextManager.Instance.Speech2("これ今日中ですか…？ (A)", 0.8f);
-            yield return TextManager.Instance.Speech2("あっ はい。 (A)", 0.8f);
-            yield return TextManager.Instance.Speech2("わかりました。 (A)", 0.8f);
-            yield return TextManager.Instance.Speech2("なんとかします。 (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("あっ はい (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("わかりました… (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("なんとかします… (A)", 0.8f);
             yield return new WaitForSeconds(4.5f);
 
             // ざわざわ声をフェードアウト
@@ -85,6 +85,7 @@ public class Scenario社畜 : MonoBehaviour
             "… … …",
             "やりたいことって こんなこと だっけ…",
             "みんな おかねの はなし ばかり…",
+            "なかまと 思える人は だれもいない…",
             "… … …",
             "じぶんは いいもの つくりたいだけなのに…",
             "… … …",
@@ -92,7 +93,10 @@ public class Scenario社畜 : MonoBehaviour
             "もう、しゅうでん の じかんだ",
             "かえらなきゃ。" };
 
-            yield return TextManager.Instance.Speech2(texts);
+            foreach (string str in texts)
+            {
+                yield return TextManager.Instance.Speech2(str);
+            }
 
             TextManager.Instance.Assign("");
 

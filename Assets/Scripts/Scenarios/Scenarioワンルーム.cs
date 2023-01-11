@@ -31,9 +31,6 @@ public class Scenarioワンルーム : MonoBehaviour
 
             yield return TextManager.Instance.Speech2("─ アラームを止める ─ (A)", 0f);
 
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
             // アラームを止める
             BgmManager.Instance.Stop();
             audioSource.Pause();
