@@ -129,42 +129,15 @@ http://oto-no-sono.com
         SeManager.Instance.Play("鉄の扉を開ける");
         yield return new WaitForSeconds(5f);
 
-        TextManager.Instance.Speech("プレイしていただき ありがとうございました！");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("体験版はここまでです。");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("この作品は 自分のつらかった過去が \nモチーフとなっています。");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("同じように つらい思いをしている人が──");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("前向きになってくれるような\n作品をめざしています。");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("だれかに ひびいてくれたら うれしいです。");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("ここが良かった、悪かった、こんなこと思ったなど──");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("どんなことでも良いので\nプレイの感想を教えていただけると嬉しいです。");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
-        TextManager.Instance.Speech("良い作品になるように\nこれから がんばっていきます！       はる");
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
+        yield return TextManager.Instance.Speech2("プレイしていただき ありがとうございました！");
+        yield return TextManager.Instance.Speech2("体験版はここまでです。");
+        yield return TextManager.Instance.Speech2("この作品は 自分のつらかった過去が \nモチーフとなっています。");
+        yield return TextManager.Instance.Speech2("同じように つらい思いをしている人が──");
+        yield return TextManager.Instance.Speech2("前向きになってくれるような\n作品をめざしています。");
+        yield return TextManager.Instance.Speech2("だれかに ひびいてくれたら うれしいです。");
+        yield return TextManager.Instance.Speech2("ここが良かった、悪かった、こんなこと思ったなど──");
+        yield return TextManager.Instance.Speech2("どんなことでも良いので\nプレイの感想を教えていただけると嬉しいです。");
+        yield return TextManager.Instance.Speech2("良い作品になるように\nこれから がんばっていきます！       はる");
         yield return new WaitForSeconds(3.5f);
 
         // タイトルに戻る

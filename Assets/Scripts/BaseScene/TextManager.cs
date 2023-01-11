@@ -65,6 +65,16 @@ public class TextManager : SingletonMonoBehaviour<TextManager>
         IsTalking = false;
     }
 
+    public IEnumerator Speech2(string[] strs, float audioPitch = 1f)
+    {
+        IsTalking = true;
+        foreach (string str in strs)
+        {
+            yield return TalkText(str, audioPitch);
+        }
+        IsTalking = false;
+    }
+
     public void Speech(string str, float audioPitch = 1f)
     {
         speechTexts.Add(new Speech() { texts = new string[] { str }, audioPitch = audioPitch });

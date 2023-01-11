@@ -27,16 +27,16 @@ public class Hatena : MonoBehaviour
         {
             if (!TextManager.Instance.IsTalking)
             {
-                Speech();
+                StartCoroutine(Speech());
             }
         }
     }
 
-    void Speech()
+    IEnumerator Speech()
     {
         foreach (var text in speechTexts)
         {
-            TextManager.Instance.Speech(text);
+            yield return TextManager.Instance.Speech2(text);
         }
     }
 

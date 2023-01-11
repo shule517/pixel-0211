@@ -31,7 +31,7 @@ public class Scenarioゲームたのしい : MonoBehaviour
         TextManager.Instance.Assign("");
         yield return new WaitForSeconds(2.5f);
 
-        TextManager.Instance.Speech("─ アラームを止める ─ (A)", 0f);
+        yield return TextManager.Instance.Speech2("─ アラームを止める ─ (A)", 0f);
 
         yield return new WaitUntil(() => Input.GetButtonDown("決定"));
         yield return null;

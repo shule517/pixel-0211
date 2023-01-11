@@ -59,27 +59,11 @@ public class Scenario社畜 : MonoBehaviour
             // 2日目
             yield return new WaitForSeconds(4.5f);
 
-            TextManager.Instance.Speech("えっ… (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("これ今日中ですか…？ (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("あっ はい。 (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("わかりました。 (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("なんとかします。 (A)", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Assign("");
+            yield return TextManager.Instance.Speech2("えっ… (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("これ今日中ですか…？ (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("あっ はい。 (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("わかりました。 (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("なんとかします。 (A)", 0.8f);
             yield return new WaitForSeconds(4.5f);
 
             // ざわざわ声をフェードアウト
@@ -98,21 +82,10 @@ public class Scenario社畜 : MonoBehaviour
             // 3日目
             yield return new WaitForSeconds(4.5f);
 
-            TextManager.Instance.Speech("えっ…", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("よるちゃん やめちゃうんですか…", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("…そうなんですね", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
-
-            TextManager.Instance.Speech("…わかりました", 0.8f);
-            yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            yield return null;
+            yield return TextManager.Instance.Speech2("えっ…", 0.8f);
+            yield return TextManager.Instance.Speech2("よるちゃん やめちゃうんですか…", 0.8f);
+            yield return TextManager.Instance.Speech2("…そうなんですね", 0.8f);
+            yield return TextManager.Instance.Speech2("…わかりました", 0.8f);
 
             // ざわざわ声をフェードアウト
             BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
@@ -137,15 +110,16 @@ public class Scenario社畜 : MonoBehaviour
             "もう、しゅうでん の じかんだ",
             "かえらなきゃ。" };
 
-            foreach (var sppechText in texts)
-            {
-                TextManager.Instance.Speech(sppechText);
-                yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-                yield return null;
-                TextManager.Instance.Assign("");
-                yield return new WaitForSeconds(0.8f);
-            }
-            yield return null;
+            yield return TextManager.Instance.Speech2(texts);
+            // foreach (var sppechText in texts)
+            // {
+            //     TextManager.Instance.Speech(sppechText);
+            //     yield return new WaitUntil(() => Input.GetButtonDown("決定"));
+            //     yield return null;
+            //     TextManager.Instance.Assign("");
+            //     yield return new WaitForSeconds(0.8f);
+            // }
+            // yield return null;
             TextManager.Instance.Assign("");
 
             days++;
