@@ -74,30 +74,12 @@ public class Scenario社畜 : MonoBehaviour
             // 暗転
             yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
-            days++;
-            SceneManager.LoadScene("ワンルームScene");
-        }
-        else
-        {
-            // 3日目
-            yield return new WaitForSeconds(4.5f);
-
-            yield return TextManager.Instance.Speech2("えっ…", 0.8f);
-            yield return TextManager.Instance.Speech2("よるちゃん やめちゃうんですか…", 0.8f);
-            yield return TextManager.Instance.Speech2("…そうなんですね", 0.8f);
-            yield return TextManager.Instance.Speech2("…わかりました", 0.8f);
-
-            // ざわざわ声をフェードアウト
-            BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
-            hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
-            yield return new WaitForSeconds(14.5f);
-
-            // 暗転
-            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+            // days++;
+            // SceneManager.LoadScene("ワンルームScene");
 
             yield return new WaitForSeconds(2.5f);
 
-            // ３回目だけ 帰る意思 分岐
+            // 2回目に 帰る意思 分岐
             var texts = new string[] { "きょうも しごとが おわらない。",
             "はぁ…",
             "… … …",
@@ -111,20 +93,30 @@ public class Scenario社畜 : MonoBehaviour
             "かえらなきゃ。" };
 
             yield return TextManager.Instance.Speech2(texts);
-            // foreach (var sppechText in texts)
-            // {
-            //     TextManager.Instance.Speech(sppechText);
-            //     yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-            //     yield return null;
-            //     TextManager.Instance.Assign("");
-            //     yield return new WaitForSeconds(0.8f);
-            // }
-            // yield return null;
+
             TextManager.Instance.Assign("");
 
             days++;
             SceneManager.LoadScene("夜道Scene");
         }
+        // else
+        // {
+        //     // 3日目
+        //     yield return new WaitForSeconds(4.5f);
+
+        //     yield return TextManager.Instance.Speech2("えっ…", 0.8f);
+        //     yield return TextManager.Instance.Speech2("よるちゃん やめちゃうんですか…", 0.8f);
+        //     yield return TextManager.Instance.Speech2("…そうなんですね", 0.8f);
+        //     yield return TextManager.Instance.Speech2("…わかりました", 0.8f);
+
+        //     // ざわざわ声をフェードアウト
+        //     BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+        //     hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
+        //     yield return new WaitForSeconds(14.5f);
+
+        //     // 暗転
+        //     yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
+        // }
     }
 
     // Update is called once per frame
