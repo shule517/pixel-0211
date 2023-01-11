@@ -18,10 +18,11 @@ public class Scenarioゲームたのしい : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        yield return TextManager.Instance.Speech2("めちゃくちゃ いいゲームだった…！ (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("あー 終わっちゃった… (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("このゲーム めちゃくちゃよかった…！ (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("雰囲気がとてもいい… (A)", 0.8f);
         yield return TextManager.Instance.Speech2("ドット絵も、音楽も、ストーリーも── (A)", 0.8f);
         yield return TextManager.Instance.Speech2("すべてが つながっていて── (A)", 0.8f);
-        yield return TextManager.Instance.Speech2("最高な ふんいきだった！！ (A)", 0.8f);
         yield return TextManager.Instance.Speech2("人の心を動かすようなゲーム── (A)", 0.8f);
         yield return TextManager.Instance.Speech2("いつか 自分も 作れたらなぁ… … … (A)", 0.8f);
 

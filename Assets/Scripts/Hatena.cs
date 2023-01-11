@@ -34,10 +34,12 @@ public class Hatena : MonoBehaviour
 
     IEnumerator Speech()
     {
+        Player.Instance.IsPlayable = false; // 操作できないようにする
         foreach (var text in speechTexts)
         {
             yield return TextManager.Instance.Speech2(text);
         }
+        Player.Instance.IsPlayable = true;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

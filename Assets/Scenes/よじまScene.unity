@@ -1772,7 +1772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[2]
-      value: "\u307E\u3088\u306A\u304B\u306E\u30B3\u30F3\u30D3\u30CB\u306F"
+      value: "\u307E\u3088\u306A\u304B\u306E\u30B3\u30F3\u30D3\u30CB\u306F\u2500\u2500"
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[3]
@@ -1784,7 +1784,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[5]
-      value: "\u3072\u304B\u308A\u306E\u306F\u3053"
+      value: "\u3053\u306E\u753A\u306B \u3058\u3076\u3093\u3057\u304B \u3044\u306A\u3044\u611F\u899A\u2026"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a87d205b62de1459885fd01bee586cb5, type: 3}

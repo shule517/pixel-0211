@@ -53,14 +53,14 @@ public class Scenarioワンルーム : MonoBehaviour
             yield return TextManager.Instance.Speech2("そういえば あの頃は── (A)", 0.8f);
             yield return TextManager.Instance.Speech2("ゲームつくりたかったんだよなぁ… (A)", 0.8f);
             yield return TextManager.Instance.Speech2("… … !! (A)", 0.8f);
-            yield return TextManager.Instance.Speech2("もう時間だ 行かなきゃ (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("もう時間だ 行かなきゃ! (A)", 0.8f);
         }
         else if (days == 1)
         {
             // 2日目
             yield return TextManager.Instance.Speech2("もう朝だ… (A)", 0.8f);
             yield return TextManager.Instance.Speech2("つかれた… (A)", 0.8f);
-            yield return TextManager.Instance.Speech2("でも、もう行かなきゃ (A)", 0.8f);
+            yield return TextManager.Instance.Speech2("行かなきゃ… (A)", 0.8f);
         }
         else
         {
@@ -69,7 +69,7 @@ public class Scenarioワンルーム : MonoBehaviour
         }
 
         TextManager.Instance.Assign("");
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
 
         SeManager.Instance.Play("お着替え");
         yield return new WaitForSeconds(5.5f);

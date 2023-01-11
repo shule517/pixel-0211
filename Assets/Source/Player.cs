@@ -51,7 +51,7 @@ public class Player : SingletonMonoBehaviour<Player>
     /// <summary> 更新処理 </summary>
     private void Update()
     {
-        if (!IsPlayable) { return; }
+        if (!IsPlayable) { nowAnime = standAnime; return; }
 
         UpdateMove(_moveVector);
 

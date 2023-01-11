@@ -33,6 +33,6 @@ EditorBuildSettings:
     path: "Assets/Scenes/\u99C5\u30DB\u30FC\u30E0Scene.unity"
     guid: 61e5c1c6dc38d0048a33c6e66cd47a85
   - enabled: 1
-    path: "Assets/Scenes/\u3057\u307F\u3057\u3099\u307F\u30A8\u30F3\u30C6\u3099\u30A3\u30F3\u30AF\u3099Scene.unity"
+    path: "Assets/Scenes/\u3057\u307F\u3058\u307F\u30A8\u30F3\u30C7\u30A3\u30F3\u30B0Scene.unity"
     guid: a3c1e43aa09cf4125a0d88039a94368b
   m_configObjects: {}
