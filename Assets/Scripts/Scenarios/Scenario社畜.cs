@@ -74,8 +74,26 @@ public class Scenario社畜 : MonoBehaviour
             // 暗転
             yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
-            // days++;
-            // SceneManager.LoadScene("ワンルームScene");
+            days++;
+            SceneManager.LoadScene("ワンルームScene");
+        }
+        else
+        {
+            // 3日目
+            yield return new WaitForSeconds(4.5f);
+
+            yield return TextManager.Instance.Speech2("えっ…", 0.8f);
+            yield return TextManager.Instance.Speech2("よるちゃん やめちゃうんですか…", 0.8f);
+            yield return TextManager.Instance.Speech2("…そうなんですね", 0.8f);
+            yield return TextManager.Instance.Speech2("…わかりました", 0.8f);
+
+            // ざわざわ声をフェードアウト
+            BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
+            hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
+            yield return new WaitForSeconds(14.5f);
+
+            // 暗転
+            yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
 
             yield return new WaitForSeconds(2.5f);
 
@@ -103,24 +121,6 @@ public class Scenario社畜 : MonoBehaviour
             days++;
             SceneManager.LoadScene("夜道Scene");
         }
-        // else
-        // {
-        //     // 3日目
-        //     yield return new WaitForSeconds(4.5f);
-
-        //     yield return TextManager.Instance.Speech2("えっ…", 0.8f);
-        //     yield return TextManager.Instance.Speech2("よるちゃん やめちゃうんですか…", 0.8f);
-        //     yield return TextManager.Instance.Speech2("…そうなんですね", 0.8f);
-        //     yield return TextManager.Instance.Speech2("…わかりました", 0.8f);
-
-        //     // ざわざわ声をフェードアウト
-        //     BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
-        //     hitokage.GetComponent<SpriteRenderer>().DOFade(0f, 6f);
-        //     yield return new WaitForSeconds(14.5f);
-
-        //     // 暗転
-        //     yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();
-        // }
     }
 
     // Update is called once per frame

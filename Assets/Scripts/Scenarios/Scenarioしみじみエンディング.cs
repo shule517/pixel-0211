@@ -115,35 +115,35 @@ http://oto-no-sono.com
         isDisplayedMuseum = true;
     }
 
-    IEnumerator endingScenario()
-    {
-        isEndingScenario = true;
-        Debug.Log("museumScenario");
+    //IEnumerator endingScenario()
+    //{
+    //    isEndingScenario = true;
+    //    Debug.Log("museumScenario");
 
-        // 暗くする
-        light2D.intensity = 0;
-        player.SetActive(false);
+    //    // 暗くする
+    //    light2D.intensity = 0;
+    //    player.SetActive(false);
 
-        yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 0.1f).SetEase(Ease.InQuad).WaitForCompletion();
-        yield return new WaitForSeconds(1.5f);
-        SeManager.Instance.Play("鉄の扉を開ける");
-        yield return new WaitForSeconds(5f);
+    //    yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 0.1f).SetEase(Ease.InQuad).WaitForCompletion();
+    //    yield return new WaitForSeconds(1.5f);
+    //    SeManager.Instance.Play("鉄の扉を開ける");
+    //    yield return new WaitForSeconds(5f);
 
-        yield return TextManager.Instance.Speech2("プレイしていただき ありがとうございました！");
-        yield return TextManager.Instance.Speech2("体験版はここまでです。");
-        yield return TextManager.Instance.Speech2("この作品は 自分のつらかった過去が \nモチーフとなっています。");
-        yield return TextManager.Instance.Speech2("同じように つらい思いをしている人が──");
-        yield return TextManager.Instance.Speech2("前向きになってくれるような\n作品をめざしています。");
-        yield return TextManager.Instance.Speech2("だれかに ひびいてくれたら うれしいです。");
-        yield return TextManager.Instance.Speech2("ここが良かった、悪かった、こんなこと思ったなど──");
-        yield return TextManager.Instance.Speech2("どんなことでも良いので\nプレイの感想を教えていただけると嬉しいです。");
-        yield return TextManager.Instance.Speech2("良い作品になるように\nこれから がんばっていきます！       はる");
-        yield return new WaitForSeconds(3.5f);
+    //    yield return TextManager.Instance.Speech2("プレイしていただき ありがとうございました。");
+    //    yield return TextManager.Instance.Speech2("体験版は ここまでです。");
+    //    yield return TextManager.Instance.Speech2("この作品は 自分のつらかった過去が \nモチーフとなっています。");
+    //    yield return TextManager.Instance.Speech2("同じように つらい思いをしている人が──");
+    //    yield return TextManager.Instance.Speech2("前向きになってくれるような\n作品をめざしています。");
+    //    yield return TextManager.Instance.Speech2("だれかに ひびいてくれたら うれしいです。");
+    //    yield return TextManager.Instance.Speech2("ここが良かった、悪かった、こんなこと思ったなど──");
+    //    yield return TextManager.Instance.Speech2("どんなことでも良いので\nプレイの感想を教えていただけると嬉しいです。");
+    //    yield return TextManager.Instance.Speech2("良い作品になるように\nこれから がんばっていきます！       はる");
+    //    yield return new WaitForSeconds(3.5f);
 
-        // タイトルに戻る
-        SceneManager.LoadScene("TitleScene");
-        yield return null;
-    }
+    //    // タイトルに戻る
+    //    SceneManager.LoadScene("TitleScene");
+    //    yield return null;
+    //}
 
     void Update()
     {
@@ -151,10 +151,10 @@ http://oto-no-sono.com
         var textScrollSpeed = 35f;
         text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
 
-        if (isDisplayedMuseum && isEndingScenario == false && - 29f < player.transform.position.x)
-        {
-            // 美術館＆エンディング
-            StartCoroutine(endingScenario());
-        }
+        //if (isDisplayedMuseum && isEndingScenario == false && - 29f < player.transform.position.x)
+        //{
+        //    // 美術館＆エンディング
+        //    StartCoroutine(endingScenario());
+        //}
     }
 }

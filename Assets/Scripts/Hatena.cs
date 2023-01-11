@@ -52,6 +52,5 @@ public class Hatena : MonoBehaviour
     {
         // 離れたら非表示
         spriteRender.enabled = false;
-        TextManager.Instance.Assign("");
     }
 }
