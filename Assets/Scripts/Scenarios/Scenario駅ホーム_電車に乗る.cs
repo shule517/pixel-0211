@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
@@ -12,11 +13,12 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
     public GameObject doorRight;
     public GameObject player;
     public bool IsTalking = false;
+    public Light2D light2D;
+    public Light2D light2DPlayer;
 
     public List<string> speechTexts;
     public float interval = 1.5f;
     private SpriteRenderer spriteRender;
-
 
     void Start()
     {
@@ -30,12 +32,24 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
 
     IEnumerator TakeTrain()
     {
-        // 今のBGMをフェードアウト
-        BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).WaitForCompletion();
+        // !を非表示
+        spriteRender.enabled = false;
 
         // はるが電車に乗る
-        player.transform.DOMove(new Vector3(player.transform.position.x, -1.3f, player.transform.position.z), 1f).OnComplete(() => { player.GetComponent<Renderer>().sortingOrder = 8; });
+        Player.Instance.NowAnime = Player.walkAnime;
+        yield return player.transform.DOMove(new Vector3(player.transform.position.x, -1.43f, player.transform.position.z), 1f).OnComplete(() => { player.GetComponent<Renderer>().sortingOrder = 8; }).WaitForCompletion();
         player.transform.parent = train.transform;
+
+        // 電車に乗るので、影を消す
+        Player.Instance.NowAnime = Player.standKageNashiAnime;
+
+        yield return new WaitForSeconds(2f);
+
+        // セリフ
+        yield return Speech();
+
+        // 今のBGMをフェードアウト
+        BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).WaitForCompletion();
 
         // 扉が閉まる
         SeManager.Instance.Play("電車のドアが開く1");
@@ -50,12 +64,16 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
 
         // 電車発車
         SeManager.Instance.Play("電車発車1");
-        yield return train.transform.DOMoveX(train.transform.position.x + 100f, 15f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
 
-        yield return new WaitForSeconds(2f);
+        // 暗転の予約
+        DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).SetDelay(18f);
+        DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2DPlayer.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).SetDelay(18f);
 
-        // セリフ
-        Speech();
+        // 電車の移動
+        yield return train.transform.DOMoveX(train.transform.position.x + 400f, 25f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
+        //yield return train.transform.DOMoveX(train.transform.position.x + 100f, 15f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
+
+        //yield return new WaitForSeconds(2f);
 
         //TextManager.Instance.Speech("帰るのが こわい…");
         //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -82,9 +100,9 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         // エンディングを流す
         BgmManager.Instance.Play("audiostock_822608_sample");
         BgmManager.Instance.audioSource.volume = 0;
-        yield return BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f).WaitForCompletion();
+        BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f);
 
-        yield return new WaitForSeconds(21f - 7.5f);
+        //yield return new WaitForSeconds(21f - 7.5f);
 
         SceneManager.LoadScene("しみじみエンディングScene");
 
@@ -113,11 +131,29 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         }
     }
 
-    void Speech()
+    IEnumerator Speech()
     {
+        int index = 0;
         foreach (var text in speechTexts)
         {
-            TextManager.Instance.Speech(text);
+            if (index == speechTexts.Count - 3)
+            {
+                // うるうる
+                Player.Instance.NowAnime = Player.uruuruAnime;
+            }
+
+            if (index == speechTexts.Count - 1)
+            {
+                // 最後のセリフで涙
+                Player.Instance.NowAnime = Player.namidaAnime;
+                var sequence_left = DOTween.Sequence().SetDelay(1.5f).OnComplete(() => {
+                    // 涙を流し終わったら、うるうる
+                    Player.Instance.NowAnime = Player.uruuruAnime;
+                });
+            }
+
+            yield return TextManager.Instance.Speech2(text);
+            index++;
         }
     }
 

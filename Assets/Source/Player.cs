@@ -30,6 +30,13 @@ public class Player : SingletonMonoBehaviour<Player>
     // キャラクターが操作可能か
     public bool IsPlayable { get; set; } = true;
 
+    // アニメーションの設定
+    public string NowAnime
+    {
+        get { return this.nowAnime; }
+        set { this.nowAnime = value; Debug.Log("nowAnime = " + value); }
+    }
+
     void Start()
     {
         audioSourceSeWalk = GetComponent<AudioSource>();
@@ -94,7 +101,10 @@ public class Player : SingletonMonoBehaviour<Player>
         else
         {
             _moveVector = new Vector3(0, 0f, 0f);
-            nowAnime = standAnime;
+            if (nowAnime == walkAnime)
+            {
+                nowAnime = standAnime;
+            }
         }
 
         //// スペースキーの取得
@@ -166,8 +176,11 @@ public class Player : SingletonMonoBehaviour<Player>
 
     private void FixedUpdate()
     {
+        Debug.Log("nowAnime: " + nowAnime + "oldAnime: " + oldAnime);
+
         if (nowAnime != oldAnime)
         {
+            Debug.Log("nowAnime != oldAnime -> " + nowAnime);
             oldAnime = nowAnime;
             animator.Play(nowAnime);
 
@@ -190,7 +203,10 @@ public class Player : SingletonMonoBehaviour<Player>
     #region Move
 
     public static string standAnime = "PlayerStand";
+    public static string standKageNashiAnime = "PlayerStandKageNashi";
     public static string walkAnime = "PlayerWalk";
+    public static string uruuruAnime = "PlayerUruuru";
+    public static string namidaAnime = "PlayerNamida";
 
     string nowAnime = standAnime;
     string oldAnime = standAnime;
