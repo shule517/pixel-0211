@@ -81,7 +81,14 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         train.transform.DOMoveX(train.transform.position.x + 400f, 25f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
         //yield return train.transform.DOMoveX(train.transform.position.x + 100f, 15f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
 
-        yield return new WaitForSeconds(18f);
+        yield return new WaitForSeconds(4.5f);
+
+        // エンディングを流す
+        BgmManager.Instance.Play("audiostock_Indium");
+        BgmManager.Instance.audioSource.volume = 0;
+        BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f);
+
+        yield return new WaitForSeconds(13.5f);
 
         //TextManager.Instance.Speech("帰るのが こわい…");
         //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -103,12 +110,7 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         SeManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).OnComplete(() => {
             SeManager.Instance.Stop();
             SeManager.Instance.audioSource.volume = 1f;
-        }).WaitForCompletion();
-
-        // エンディングを流す
-        BgmManager.Instance.Play("audiostock_Indium");
-        BgmManager.Instance.audioSource.volume = 0;
-        BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f).WaitForCompletion();
+        });
 
         yield return new WaitForSeconds(7.5f);
 

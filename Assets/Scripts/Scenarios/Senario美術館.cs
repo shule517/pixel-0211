@@ -17,6 +17,7 @@ public class Senario美術館 : MonoBehaviour
     private SpriteRenderer spriteRender;
     private bool isEndingScenario = false;
     private bool isDisplayedMuseum = false;
+    private bool isDoorTrigger = false;
 
     void Start()
     {
@@ -31,6 +32,12 @@ public class Senario美術館 : MonoBehaviour
     void Update()
     {
         Debug.Log("light2D.intensity: " + light2D.intensity);
+
+        if (light2D.intensity >= 1f)
+        {
+            spriteRender.enabled = isDoorTrigger;
+        }
+
         if (spriteRender.enabled && Input.GetButtonDown("決定") && light2D.intensity >= 1f)
         {
             if (!TextManager.Instance.IsTalking)
@@ -55,7 +62,7 @@ public class Senario美術館 : MonoBehaviour
         SeManager.Instance.Play("鉄の扉を開ける");
 
         yield return new WaitForSeconds(1.5f);
-        yield return TextManager.Instance.Speech2("            つ づ く");
+        yield return TextManager.Instance.Speech2("\n\n\n                                    つ づ く");
         yield return new WaitForSeconds(5f);
 
         yield return TextManager.Instance.Speech2("プレイしていただき ありがとうございました。");
@@ -87,12 +94,14 @@ public class Senario美術館 : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         // 近くに来たら表示
-        spriteRender.enabled = true;
+        //spriteRender.enabled = true;
+        isDoorTrigger = true;
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         // 離れたら非表示
-        spriteRender.enabled = false;
+        //spriteRender.enabled = false;
+        isDoorTrigger = false;
     }
 }
