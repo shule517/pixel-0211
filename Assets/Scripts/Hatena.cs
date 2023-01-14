@@ -34,12 +34,18 @@ public class Hatena : MonoBehaviour
 
     IEnumerator Speech()
     {
+        spriteRender.enabled = false;
         Player.Instance.IsPlayable = false; // 操作できないようにする
+        Player.Instance.NowAnime = Player.standAnime;
         foreach (var text in speechTexts)
         {
             yield return TextManager.Instance.Speech2(text);
         }
         Player.Instance.IsPlayable = true;
+
+        // ？を表示
+        yield return new WaitForSeconds(0.3f);
+        spriteRender.enabled = true;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

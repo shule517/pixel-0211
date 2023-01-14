@@ -37,6 +37,12 @@ public class Player : SingletonMonoBehaviour<Player>
         set { this.nowAnime = value; Debug.Log("nowAnime = " + value); }
     }
 
+    public bool FlipX
+    {
+        get { return spriteRenderer.flipX; }
+        set { spriteRenderer.flipX = value; }
+    }
+
     void Start()
     {
         audioSourceSeWalk = GetComponent<AudioSource>();
@@ -58,7 +64,7 @@ public class Player : SingletonMonoBehaviour<Player>
     /// <summary> 更新処理 </summary>
     private void Update()
     {
-        if (!IsPlayable) { nowAnime = standAnime; return; }
+        if (!IsPlayable) { return; }
 
         UpdateMove(_moveVector);
 

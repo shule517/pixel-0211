@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Com.LuisPedroFonseca.ProCamera2D;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -15,6 +16,7 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
     public bool IsTalking = false;
     public Light2D light2D;
     public Light2D light2DPlayer;
+    public ProCamera2DNumericBoundaries numericBoundaries;
 
     public List<string> speechTexts;
     public float interval = 1.5f;
@@ -32,12 +34,18 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
 
     IEnumerator TakeTrain()
     {
+        // 操作不能にする
+        Player.Instance.IsPlayable = false;
+
         // !を非表示
         spriteRender.enabled = false;
+        numericBoundaries.enabled = false;
 
         // はるが電車に乗る
         Player.Instance.NowAnime = Player.walkAnime;
-        yield return player.transform.DOMove(new Vector3(player.transform.position.x, -1.43f, player.transform.position.z), 1f).OnComplete(() => { player.GetComponent<Renderer>().sortingOrder = 8; }).WaitForCompletion();
+        yield return player.transform.DOMove(new Vector3(-19.4f, player.transform.position.y, player.transform.position.z), 2f).WaitForCompletion();
+        Player.Instance.FlipX = true;
+        yield return player.transform.DOMove(new Vector3(player.transform.position.x, -1.43f, player.transform.position.z), 1.5f).OnComplete(() => { player.GetComponent<Renderer>().sortingOrder = 8; }).WaitForCompletion();
         player.transform.parent = train.transform;
 
         // 電車に乗るので、影を消す
@@ -70,10 +78,10 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2DPlayer.intensity = x, 0f, 5f).SetEase(Ease.InQuad)).SetDelay(18f);
 
         // 電車の移動
-        yield return train.transform.DOMoveX(train.transform.position.x + 400f, 25f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
+        train.transform.DOMoveX(train.transform.position.x + 400f, 25f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
         //yield return train.transform.DOMoveX(train.transform.position.x + 100f, 15f).SetEase(Ease.InCubic).SetDelay(3f).WaitForCompletion();
 
-        //yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(18f);
 
         //TextManager.Instance.Speech("帰るのが こわい…");
         //yield return new WaitUntil(() => Input.GetButtonDown("決定"));
@@ -95,12 +103,14 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         SeManager.Instance.audioSource.DOFade(endValue: 0f, duration: 7.5f).OnComplete(() => {
             SeManager.Instance.Stop();
             SeManager.Instance.audioSource.volume = 1f;
-        });
+        }).WaitForCompletion();
 
         // エンディングを流す
         BgmManager.Instance.Play("audiostock_822608_sample");
         BgmManager.Instance.audioSource.volume = 0;
-        BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f);
+        BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f).WaitForCompletion();
+
+        yield return new WaitForSeconds(7.5f);
 
         //yield return new WaitForSeconds(21f - 7.5f);
 
