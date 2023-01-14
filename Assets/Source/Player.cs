@@ -30,6 +30,9 @@ public class Player : SingletonMonoBehaviour<Player>
     // キャラクターが操作可能か
     public bool IsPlayable { get; set; } = true;
 
+    public float MinMoveX = -100f;
+    public float MaxMoveX = 100f;
+
     // アニメーションの設定
     public string NowAnime
     {
@@ -281,6 +284,17 @@ public class Player : SingletonMonoBehaviour<Player>
     {
         // 現在向きを基準に、入力されたベクトルに向かって移動
         transform.position += transform.rotation * vector.normalized * _movePerSecond * Time.deltaTime;
+
+        // 画面外にはみでないようにする
+        if (transform.position.x < MinMoveX)
+        {
+            transform.position = new Vector3(MinMoveX, transform.position.y, transform.position.z);
+        }
+
+        if (MaxMoveX < transform.position.x)
+        {
+            transform.position = new Vector3(MaxMoveX, transform.position.y, transform.position.z);
+        }
     }
 
     /// <summary> ドラッグ操作終了（移動用） </summary>

@@ -683,6 +683,8 @@ MonoBehaviour:
   _movePerSecond: 2
   soundWalk: {fileID: 8300000, guid: 149a5f2cb175d4cb29f9780d9a787b7f, type: 3}
   soundTalk: {fileID: 8300000, guid: 0e86f9a020c974b548ac6aac894d54b2, type: 3}
+  MinMoveX: -49.5
+  MaxMoveX: 100
 --- !u!82 &457499308
 AudioSource:
   m_ObjectHideFlags: 0

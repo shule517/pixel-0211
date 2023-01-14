@@ -2767,6 +2767,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7073196652239808159, guid: 25594dd9fbc2347e18127e43279eaf1d, type: 3}
+      propertyPath: MinMoveX
+      value: -59
+      objectReference: {fileID: 0}
+    - target: {fileID: 7073196652239808159, guid: 25594dd9fbc2347e18127e43279eaf1d, type: 3}
       propertyPath: _moveController
       value: 
       objectReference: {fileID: 2102042733}
