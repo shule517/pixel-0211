@@ -14,6 +14,10 @@ public class ScenarioTitle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // データを初期化
+        Scenarioワンルーム.days = 0;
+        Scenario社畜.days = 0;
+
         TextManager.Instance.Assign("");
         Sequence moveSequence = DOTween.Sequence();
 

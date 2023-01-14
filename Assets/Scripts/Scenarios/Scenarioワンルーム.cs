@@ -8,7 +8,7 @@ public class Scenarioワンルーム : MonoBehaviour
 {
     public Light2D light2D;
     public AudioSource audioSource;
-    static int days = 0;
+    public static int days = 0;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void Init()

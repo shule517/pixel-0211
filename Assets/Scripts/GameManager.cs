@@ -21,5 +21,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             // タイトルに戻る
             SceneManager.LoadScene("TitleScene");
         }
+        else if (Input.GetKeyDown(KeyCode.Q))
+        {
+            // 散歩スタート
+            SceneManager.LoadScene("夜道Scene");
+        }
     }
 }

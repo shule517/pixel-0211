@@ -8,7 +8,7 @@ public class Scenario社畜 : MonoBehaviour
 {
     public GameObject hitokage;
     public Light2D light2D;
-    static int days = 0;
+    public static int days = 0;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void Init()
