@@ -1760,7 +1760,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.size
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[0]
@@ -1776,7 +1776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[3]
-      value: "\u3057\u3093\u3074\u3066\u304D\u306A\u3072\u304B\u308A\u3060"
+      value: "\u3057\u3093\u3074\u3066\u304D\u306A \u3072\u304B\u308A\u3060"
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[4]
@@ -1784,11 +1784,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[5]
-      value: "\u81EA\u5206\u3044\u304C\u3044 \u8AB0\u3082\u3044\u306A\u3044\u611F\u899A\u2026"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1693075166023834413, guid: a87d205b62de1459885fd01bee586cb5, type: 3}
       propertyPath: speechTexts.Array.data[6]
-      value: "\u81EA\u7531\u306B\u306A\u308C\u305F\u6C17\u304C\u3059\u308B\u2026"
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a87d205b62de1459885fd01bee586cb5, type: 3}

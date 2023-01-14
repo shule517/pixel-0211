@@ -9,6 +9,7 @@ public class Hatena : MonoBehaviour
 {
     public List<string> speechTexts;
     public float interval = 1.5f;
+    public string PlayerAnimation = Player.standAnime;
     private SpriteRenderer spriteRender;
 
     void Start()
@@ -36,7 +37,7 @@ public class Hatena : MonoBehaviour
     {
         spriteRender.enabled = false;
         Player.Instance.IsPlayable = false; // 操作できないようにする
-        Player.Instance.NowAnime = Player.standAnime;
+        Player.Instance.NowAnime = PlayerAnimation;
         foreach (var text in speechTexts)
         {
             yield return TextManager.Instance.Speech2(text);

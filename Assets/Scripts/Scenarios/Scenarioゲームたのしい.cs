@@ -22,8 +22,8 @@ public class Scenarioゲームたのしい : MonoBehaviour
         yield return TextManager.Instance.Speech2("このゲーム めちゃくちゃよかった…！ (A)", 0.8f);
         yield return TextManager.Instance.Speech2("雰囲気がとてもいい… (A)", 0.8f);
         yield return TextManager.Instance.Speech2("ドット絵も、音楽も、ストーリーも── (A)", 0.8f);
-        yield return TextManager.Instance.Speech2("すべてが つながっていて── (A)", 0.8f);
-        yield return TextManager.Instance.Speech2("人の心を動かすようなゲーム── (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("すべてが つながってる… (A)", 0.8f);
+        yield return TextManager.Instance.Speech2("こんな 人の心を動かすようなゲーム── (A)", 0.8f);
         yield return TextManager.Instance.Speech2("いつか 自分も 作れたらなぁ… … … (A)", 0.8f);
 
         yield return new WaitForSeconds(2f);
@@ -34,12 +34,12 @@ public class Scenarioゲームたのしい : MonoBehaviour
 
         yield return TextManager.Instance.Speech2("─ アラームを止める ─ (A)", 0f);
 
-        yield return new WaitUntil(() => Input.GetButtonDown("決定"));
-        yield return null;
-
         // アラームを止める
         BgmManager.Instance.Stop();
         TextManager.Instance.Assign("");
+
+        // 暗転
+        yield return DOTween.Sequence().Append(DOTween.To(() => 1f, (float x) => light2D.intensity = x, 0f, 2f).SetEase(Ease.InQuad)).WaitForCompletion();
 
         SceneManager.LoadScene("ワンルームScene");
     }
