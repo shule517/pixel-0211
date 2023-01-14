@@ -23,7 +23,7 @@ public class Scenario踏切 : MonoBehaviour
         //{
         //    SceneManager.LoadScene("よじまScene");
         //}
-        if (maxX < player.transform.position.x || Input.GetKeyDown(KeyCode.Space))
+        if (maxX < player.transform.position.x)
         {
             SceneManager.LoadScene("駅ホームScene");
         }
