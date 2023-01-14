@@ -25,7 +25,7 @@ public class Scenarioしみじみエンディング : MonoBehaviour
     {
         // エンドロールのスクロール
         //text.transform.DOMoveY(850f, 50f).SetEase(Ease.Linear);
-        text.transform.DOLocalMoveY(700f, 50f).SetEase(Ease.Linear);
+        text.transform.DOLocalMoveY(750f, 50f).SetEase(Ease.Linear);
         // var textScrollSpeed = 35f;
         // text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
 
