@@ -30,9 +30,10 @@ public class Senario美術館 : MonoBehaviour
 
     void Update()
     {
-        if (spriteRender.enabled && Input.GetButtonDown("決定"))
+        Debug.Log("light2D.intensity: " + light2D.intensity);
+        if (spriteRender.enabled && Input.GetButtonDown("決定") && light2D.intensity >= 1f)
         {
-            if (!TextManager.Instance.IsTalking) // && light2D.intensity > 0.9f
+            if (!TextManager.Instance.IsTalking)
             {
                 // 美術館＆エンディング
                 StartCoroutine(endingScenario());
@@ -52,6 +53,9 @@ public class Senario美術館 : MonoBehaviour
         yield return BgmManager.Instance.audioSource.DOFade(endValue: 0f, duration: 0.1f).SetEase(Ease.InQuad).WaitForCompletion();
         yield return new WaitForSeconds(1.5f);
         SeManager.Instance.Play("鉄の扉を開ける");
+
+        yield return new WaitForSeconds(1.5f);
+        yield return TextManager.Instance.Speech2("            つ づ く");
         yield return new WaitForSeconds(5f);
 
         yield return TextManager.Instance.Speech2("プレイしていただき ありがとうございました。");

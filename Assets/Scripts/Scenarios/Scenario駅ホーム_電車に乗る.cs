@@ -106,7 +106,7 @@ public class Scenario駅ホーム_電車に乗る : MonoBehaviour
         }).WaitForCompletion();
 
         // エンディングを流す
-        BgmManager.Instance.Play("audiostock_822608_sample");
+        BgmManager.Instance.Play("audiostock_Indium");
         BgmManager.Instance.audioSource.volume = 0;
         BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 7.5f).WaitForCompletion();
 

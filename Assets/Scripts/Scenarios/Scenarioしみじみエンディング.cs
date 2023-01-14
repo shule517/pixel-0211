@@ -43,47 +43,34 @@ public class Scenarioしみじみエンディング : MonoBehaviour
         //endroll.transform.DOLocalMoveX(-100f, 150f);
         //endroll.transform.DOLocalMoveY(80f, 230f);
 
-        text.text = @"- 企画 -
-路地の浦
+//        text.text = @"
+//- まよなかさんぽ -
 
 
 
 
+//- BGM -
+//音の園
 
 
-- 制作ツール -
-
-WOLF RPGエディター
-（ SmokingWOLF 様）
-
-
+//- SE -
+//ringtones.miyanova.com
+//効果音ラボ
+//効果音辞典
 
 
-
-素材提供
-
-
-
-
-- BGM -
-
-音の園 様
-http://oto-no-sono.com
-";
-
-// - SE -
-// ringtones.miyanova.com
-
-// 効果音ラボ
-
-// 効果音辞典
+//- Font -
+//k8x12
+//LanaPixel
 
 
-// - Font -
-// k8x12
-// https://littlelimit.net/
+//- Photo -
+//pixelはる
 
-// LanaPixel font © 2020-2022 eishiya
+//- スペシャルサンクス -
+//あね
+//じゅん
+//";
 
         //text.transform.DOLocalMoveX(-447f, 10.68f);
 
@@ -108,7 +95,7 @@ http://oto-no-sono.com
         // 美術館の入り口を表示する
         museum.SetActive(true);
 
-        BgmManager.Instance.Play("audiostock_2075_sample");
+        BgmManager.Instance.Play("audiostock_パラレルワールド");
         yield return BgmManager.Instance.audioSource.DOFade(endValue: 1f, duration: 5f).SetEase(Ease.InQuad).WaitForCompletion();
 
         yield return DOTween.Sequence().Append(DOTween.To(() => 0, (float x) => light2D.intensity = x, 1f, 5f).SetEase(Ease.InQuad)).WaitForCompletion();

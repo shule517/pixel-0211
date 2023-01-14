@@ -182,8 +182,6 @@ public class Player : SingletonMonoBehaviour<Player>
 
     private void FixedUpdate()
     {
-        Debug.Log("nowAnime: " + nowAnime + "oldAnime: " + oldAnime);
-
         if (nowAnime != oldAnime)
         {
             Debug.Log("nowAnime != oldAnime -> " + nowAnime);
