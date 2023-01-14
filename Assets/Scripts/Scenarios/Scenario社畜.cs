@@ -83,7 +83,7 @@ public class Scenario社畜 : MonoBehaviour
             yield return new WaitForSeconds(4.5f);
 
             yield return TextManager.Instance.Speech2("えっ…", 0.8f);
-            yield return TextManager.Instance.Speech2("よるちゃん やめちゃうんですか…", 0.8f);
+            yield return TextManager.Instance.Speech2("よるちゃん やめちゃったんですか…", 0.8f);
             yield return TextManager.Instance.Speech2("…そうなんですね", 0.8f);
             yield return TextManager.Instance.Speech2("…わかりました", 0.8f);
 

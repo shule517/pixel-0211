@@ -67,8 +67,7 @@ public class Senario美術館 : MonoBehaviour
 
         yield return TextManager.Instance.Speech2("プレイしていただき ありがとうございました。");
         yield return TextManager.Instance.Speech2("体験版は ここまでです。");
-        yield return TextManager.Instance.Speech2("この作品は 自分のつらかった過去が \nモチーフとなっています。");
-        yield return TextManager.Instance.Speech2("同じように つらい思いをしている人が──");
+        yield return TextManager.Instance.Speech2("つらい思いをしている人が──");
         yield return TextManager.Instance.Speech2("前向きになってくれるような\n作品をめざしています。");
         yield return TextManager.Instance.Speech2("だれかに ひびいてくれたら うれしいです。");
         yield return TextManager.Instance.Speech2("ここが良かった、悪かった、こんなこと思ったなど──");

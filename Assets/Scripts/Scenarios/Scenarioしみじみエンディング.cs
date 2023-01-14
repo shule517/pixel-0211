@@ -23,6 +23,12 @@ public class Scenarioしみじみエンディング : MonoBehaviour
 
     IEnumerator Start()
     {
+        // エンドロールのスクロール
+        //text.transform.DOMoveY(850f, 50f).SetEase(Ease.Linear);
+        text.transform.DOLocalMoveY(700f, 50f).SetEase(Ease.Linear);
+        // var textScrollSpeed = 35f;
+        // text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
+
         light2D.intensity = 0; // 最初は真っ暗
 
         // 背景を非表示にする
@@ -134,14 +140,8 @@ public class Scenarioしみじみエンディング : MonoBehaviour
 
     void Update()
     {
-        // エンドロールのスクロール
-        var textScrollSpeed = 35f;
-        text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
-
-        //if (isDisplayedMuseum && isEndingScenario == false && - 29f < player.transform.position.x)
-        //{
-        //    // 美術館＆エンディング
-        //    StartCoroutine(endingScenario());
-        //}
+        // // エンドロールのスクロール
+        // var textScrollSpeed = 35f;
+        // text.transform.position = new Vector2(text.transform.position.x, text.transform.position.y + textScrollSpeed * Time.deltaTime);
     }
 }
